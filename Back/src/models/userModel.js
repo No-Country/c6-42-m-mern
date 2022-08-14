@@ -1,5 +1,4 @@
 import { Schema } from "mongoose";
-import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
     {
@@ -20,19 +19,6 @@ const userSchema = new Schema(
         dateOfBirth: {
             type: Date,
         },
-        urlProfile: {
-            type: String,
-        },
-        resetToken: {
-            type: String,
-        },
-        confirmToken: {
-            type: String,
-        },
-        confirmedAccount: {
-            type: Boolean,
-            default: false,
-        },
     },
-    { timestamps: true, versionKey: false }
+    { timestamps: true }
 );
