@@ -1,0 +1,167 @@
+.App {
+  text-align: center;
+  background-color: whitesmoke;
+  margin:0%;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;}
+
+.center{
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 60%; 
+  height: 100%; 
+  object-fit: cover;
+}
+
+.center2{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 50%; 
+    height: 80%; 
+    object-fit: cover;
+  }
+
+.container{
+  justify-content: center;
+  background-color: light;
+  text-align: center;
+  display: block;
+  align-items: center;
+  margin: auto;
+  width: 50%; 
+  height: 40%; 
+  object-fit: cover;
+}
+
+.contenedor{
+  background-color: light;
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%; 
+  height: 40%; 
+  object-fit: cover;
+}
+
+footer{
+  left:0em;
+  bottom:0em;
+  height: 3em;
+  width:100%;
+  margin: 0em;
+  text-align:center;
+  justify-content: center;
+  display: block;
+}
+
+#Clubes{
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.row{
+  justify-content: center;
+}
+
+#Tarifas{
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#Nosotros{
+  
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#Profesores{
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#Reservas{
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#Contacto{
+
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.cards{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel-caption {
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%; 
+  object-fit: cover;
+  background-color:black;
+}
+
+.fila{
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 200px; 
+  object-fit: cover;
+  background-color:black;
+}
+
+.contenedor4{
+  padding:2%;
+}
+
+#nav-item{
+  padding: 1%;
+}
+
+.social{
+  color: lightgrey;
+  padding:1.5%;
+ }
+
+ .social:hover{
+  color: black;
+ }
+
+ .modal {
+  display: none;
+  position: fixed;
+  display: contents;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+ }
+
+/*  .Slider{
+  width:100%;
+  margin: 0em;
+  text-align:center;
+  justify-content: center;
+  display: block;
+ } */
