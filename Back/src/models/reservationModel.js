@@ -3,18 +3,23 @@ import { stringify } from "querystring";
 
 const reservationSchema = new Schema(
     {
-        username:String,
+        username: String,
         email: {
             type: String,
             unique: true,
         },
         dateAndTime: {
-            type:String,
+            type: String,
             date: Date,
             time: String
         },
-        quantityOfPlayers:Number,
-        totalPrice:Number,
+        paymentMethod: String,
+        sport: String,
+        courtName: String,
+        quantityOfPlayers: Number,
+        totalPrice: Number,
     },
     { timestamps: true }
 );
+
+export default reservationSchema;
