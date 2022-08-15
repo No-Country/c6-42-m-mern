@@ -1,5 +1,4 @@
+require("dotenv").config();
 import mongoose from "mongoose";
 
-mongoose.connect('mongodb://localhost:27017/myapp');
-
-console.log("Connected");
+mongoose.connect(process.env.DB_URI);
