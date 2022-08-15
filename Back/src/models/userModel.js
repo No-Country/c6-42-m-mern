@@ -8,7 +8,7 @@ const userSchema = new Schema(
             unique: true,
             required: true
         },
-        name: {
+        firstName: {
             type: String,
             lowercase: true
         },
@@ -17,7 +17,7 @@ const userSchema = new Schema(
             lowercase: true
         },
         phoneNumber: String,
-        DNI: Number,
+        dni: Number,
         address: {
             street: {
                 type: String,
