@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+const mongoose = require("mongoose");
 
-const courtSchema = new Schema({
+const courtSchema = new mongoose.Schema({
     name: String,
     address: {
         street: {
@@ -27,4 +27,5 @@ const courtSchema = new Schema({
     }
 })
 
-export default courtSchema;
+module.exports = new mongoose.model('Stadiums', courtSchema);
+

@@ -1,22 +1,22 @@
-import { Schema } from "mongoose";
-import bcrypt from "bcrypt";
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
     {
-        userName: {
+        username: {
             type: String,
             unique: true,
             required: true
         },
-        firstName: {
+        first_name: {
             type: String,
             lowercase: true
         },
-        lastName: {
+        last_name: {
             type: String,
             lowercase: true
         },
-        phoneNumber: String,
+        phone_number: String,
         dni: Number,
         address: {
             street: {
@@ -37,12 +37,11 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            unique: false,
             required: true
         },
         tutor: {
-            fullName: String,
-            PhoneNumber: String,
+            full_name: String,
+            phone_number: String,
             address: {
                 street: {
                     type: String,
@@ -54,7 +53,7 @@ const userSchema = new Schema(
                 }
             },
         },
-        dateOfBirth: {
+        date_of_birth: {
             type: Date,
             required: true,
         },
@@ -71,4 +70,4 @@ userSchema.statics.comparePassword = async (password, receivedPassword) => {
     return await bcrypt.compare(password, receivedPassword);
 };
 
-export default userSchema;
+module.exports = new mongoose.model('users', userSchema);

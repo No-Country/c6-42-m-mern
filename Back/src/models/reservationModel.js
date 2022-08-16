@@ -1,5 +1,4 @@
-import { Schema } from "mongoose";
-import { stringify } from "querystring";
+const mongoose = require("mongoose");
 
 const reservationSchema = new Schema(
     {
@@ -22,4 +21,5 @@ const reservationSchema = new Schema(
     { timestamps: true }
 );
 
-export default reservationSchema;
+module.exports = new mongoose.model('reservas', reservationSchema);
+

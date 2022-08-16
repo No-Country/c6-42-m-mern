@@ -1,5 +1,5 @@
-import { Router } from "express";
-import signUp from "../Utils/signupValidation";
+const { Router } = require("express");
+const signUp = require("../Utils/signupValidation");
 
 const router = Router();
 
@@ -8,4 +8,4 @@ router.post("/signup",signUp);
 router.put("/editprofile",editProfile);
 
 
-export default router;
+module.exports = router;
