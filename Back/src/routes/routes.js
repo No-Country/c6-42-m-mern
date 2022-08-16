@@ -18,14 +18,6 @@ router.get('/activar-cuenta', (req, res, next) => {
 });
 
 router.get('/error', async (req, res, next) => {
-    // try {
-    //     const info = await transporter.sendMail(mailOptions);
-    //     console.log(info);
-    //     res.send('Active su cuenta con el mail enviado pls!');
-    // } catch (err) {
-    //     console.log(err);
-        // res.send(err);
-    // }
     res.send('algo salio mal :(');
 });
 
