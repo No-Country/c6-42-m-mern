@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("../Utils/passport-strategies");
-const { transporter, mailOptions } = require("../Utils/nodemailer");
+const { transporter, mailOptions, contactMailOptions } = require("../Utils/nodemailer");
 const profesorSchema = require("../models/profesorModel");
 const router = express.Router();
 
@@ -44,8 +44,17 @@ router.get('/activar', async (req, res, next) => {
         console.log(err);
         res.send(err);
     }
-    
+
 });
+
+router.post('/contact', async (req, res, next) => {
+    try{
+    await transporter.sendMail(contactMailOptions(req.body));
+    res.statusCode(200).send("Su info ha sido enviada");
+    }catch(err){
+        console.log(err);
+    }
+})
 
 
 module.exports = router;
