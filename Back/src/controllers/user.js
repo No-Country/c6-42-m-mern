@@ -27,7 +27,8 @@ class User {
       phone,
       password: await userSchema.encryptPassword(password)
     });
-    await newUser.save();
+    const res = await newUser.save();
+    return res;
   };
 
   find() {};
