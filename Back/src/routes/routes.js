@@ -39,7 +39,7 @@ router.get('/activar', async (req, res, next) => {
     try {
         const info = await transporter.sendMail(mailOptions);
         console.log(info);
-        res.send('Active su cuenta con el mail enviado pls!');
+        res.redirect('http://localhost:3000/');
     } catch (err) {
         console.log(err);
         res.send(err);
