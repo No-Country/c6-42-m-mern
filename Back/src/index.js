@@ -13,6 +13,11 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,    // 10 minutes
+    max: 100                     // 100 requests per IP
+});
+app.use(limiter);
 app.use(cors('*'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
