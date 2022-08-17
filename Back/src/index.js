@@ -10,7 +10,7 @@ const xss = require("xss-clean");
 const expressRateLimit = require("express-rate-limit");
 const router = require("./routes/routes");
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 const limiter = rateLimit({
