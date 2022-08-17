@@ -8,15 +8,15 @@ const userSchema = new mongoose.Schema(
             unique: true,
             required: true
         },
-        first_name: {
+        firstName: {
             type: String,
             lowercase: true
         },
-        last_name: {
+        lastName: {
             type: String,
             lowercase: true
         },
-        phone_number: String,
+        phoneNumber: String,
         dni: Number,
         address: {
             street: {
@@ -40,20 +40,16 @@ const userSchema = new mongoose.Schema(
             required: true
         },
         tutor: {
-            full_name: String,
-            phone_number: String,
-            address: {
-                street: {
-                    type: String,
-                    lowercase: true
-                },
-                city: {
-                    type: String,
-                    lowercase: true
-                }
+            fullName: {
+                type: String,
+                default: null
+            },
+            phoneNumber: {
+                type: Number,
+                default: null
             },
         },
-        date_of_birth: {
+        dateOfBirth: {
             type: Date,
             required: true,
         }

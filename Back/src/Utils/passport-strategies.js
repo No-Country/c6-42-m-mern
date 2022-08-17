@@ -16,6 +16,7 @@ passport.use('login', new passportStrategy(async (username, password, done) => {
 passport.use('register', new passportStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
+  console.log('Llego strategy')
   let exist = await userController.exist(username);
 
   if (exist) return done("Usuario existente");

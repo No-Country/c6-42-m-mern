@@ -194,7 +194,7 @@ handleSubmit(event) {
     
     render() {
         return (
-        <form id="formulario" onSubmit={this.handleSubmit} onReset>
+        <form action='http://localhost:5000/register' method='post' id="formulario" onReset>
         <div class="form-group row mb-3">
         <label className="col-3">Nombre</label>
         <input
@@ -313,7 +313,7 @@ handleSubmit(event) {
             <input
             type="text" 
             id="userName"
-            name="userName"
+            name="username"
             value={this.state.input.userName}
             onChange={this.handleChange}
             className="col-9" 
