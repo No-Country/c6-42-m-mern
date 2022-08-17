@@ -1,6 +1,4 @@
 import Home from './componentes/home/Home';
-// import 'bootswatch/dist/lux/bootstrap.min.css'; 
-import 'bootswatch/dist/minty/bootstrap.min.css'; 
 
 
 function App() {

@@ -165,3 +165,22 @@ footer{
   justify-content: center;
   display: block;
  } */
+
+.div-formularios{
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.invisible {
+  display:none;
+  visibility: hidden;
+  
+}
+
+.visible {
+  visibility: visible;
+  margin-top: 3%;
+
+}
+
