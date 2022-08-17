@@ -6,10 +6,8 @@ const router = express.Router();
 
 let isAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
-        console.log('here 1')
         return next();
     }
-    console.log('here 2')
     res.redirect('error');
 }
 
@@ -21,11 +19,8 @@ router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
 });
 
-router.get('/jugadores', isAuth, (req, res, next) => {
-    console.log(req.session);
-    console.log('logeado?', req.isAuthenticated());
-    console.log('usuario logeado', req.user);
-    console.log("hello worldddddddddddddddd");
+router.get('/jugadores/:id', isAuth, (req, res, next) => {
+    console.log(req.params);
     res.send('succeeeessss!');
 });
 

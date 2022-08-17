@@ -20,6 +20,7 @@ passport.use('register', new passportStrategy({
 
   if (exist) return done("Usuario existente");
   let user = await userController.create(req.body);
+  
   return done(null, user);
 }));
 
