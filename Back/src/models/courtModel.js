@@ -28,3 +28,4 @@ const courtSchema = new mongoose.Schema({
 })
 
 module.exports = new mongoose.model('Stadiums', courtSchema);
+

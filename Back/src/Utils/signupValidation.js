@@ -2,7 +2,7 @@ const userModel = require("../models/UserModel");
 
 const signUp = async (req, res) => {
     try {
-        const { username, Firstname, lastName, phoneNumber, dni, address, email, password, dateOfBirth, tutor = null } = req.body;
+        const { username, Firstname, lastName, phoneNumber, dni, address, email, password, dateOfBirth, tutor } = req.body;
 
         const userExists = await userModel.findOne({ email });
 

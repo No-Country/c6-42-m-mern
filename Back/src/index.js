@@ -7,12 +7,17 @@ const helmet = require("helmet");
 const cors = require("cors");
 const hpp = require("hpp");
 const xss = require("xss-clean");
-const expressRateLimit = require("express-rate-limit");
+const rateLimit = require("express-rate-limit");
 const router = require("./routes/routes");
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,    // 10 minutes
+    max: 100                     // 100 requests per IP
+});
+app.use(limiter);
 app.use(cors('*'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
