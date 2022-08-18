@@ -16,7 +16,6 @@ constructor() {
 
     }
 
-
 handleChange(event) {
     let input = this.state.input;
     input[event.target.name] = event.target.value;
@@ -36,7 +35,7 @@ handleSubmit(event) {
         input["phoneNumber"] = "";
         input["dateOfBirth"] = "";
         input["email"] = "";
-        input["userName"] = "";
+        input["username"] = "";
         input["password"] = "";
         input["password2"] = "";
         input["nameTutor"]="";
@@ -61,140 +60,138 @@ handleSubmit(event) {
     }
     return edad;
   }
+
+  validate(event){     
+    let input = this.state.input;
+    let errors = {};
+    let isValid = true;
   
-    validate(){
-      let input = this.state.input;
-      let errors = {};
-      let isValid = true;
-    
-      if (!input["firstName"]) {
-        isValid = false;
-        errors["firstName"] = "Por favor, ingrese su nombre.";
-      }
-
-      if (!input["lastName"]) {
-        isValid = false;
-        errors["lastName"] = "Por favor, ingrese su apellido.";
-      }
-    
-      if (!input["dni"]) {
-        isValid = false;
-        errors["dni"] = "Por favor, ingrese su DNI.";
-      }
-
-      if (typeof input["dni"] !== "undefined") { 
-        if( !(/^\d{8}$/.test(input["dni"])) ) {
-        isValid = false;
-        errors["dni"] = "Solo se permiten 8 caracteres numéricos. Por ej.: 22743134";
-        }
-      }
-
-      if (!input["street"]) {
-        isValid = false;
-        errors["street"] = "Por favor, ingrese su dirección.";
-      }
-
-      if (!input["city"]) {
-        isValid = false;
-        errors["city"] = "Por favor, ingrese su ciudad.";
-      }
-
-      if (!input["phoneNumber"]) {
-        isValid = false;
-        errors["phoneNumber"] = "Por favor, ingrese su celular.";
-      } 
-
-      if (typeof input["phoneNumber"] !== "undefined") { 
-        if(isNaN(input["phoneNumber"]) ) {
-        isValid = false;
-        errors["phoneNumber"] = "Solo se permiten valores numéricos (sin +, () ni -)";
-        }
-      }
-
-      if (!input["dateOfBirth"]) {
-        isValid = false;
-        errors["dateOfBirth"] = "Por favor, ingrese su fecha de nacimiento.";
-
-      } 
-      
-      if (typeof input["dateOfBirth"] !== "undefined") { 
-      var edad=this.calcular_edad(input["dateOfBirth"]);
-        if ((edad<18) && (document.getElementById("tutor").className="invisible")) {
-          errors["dateOfBirth"] = "Es menor de edad. Debe completar los datos de su tutor/a.";
-          document.getElementById("tutor").classList.replace("invisible", "visible");
-
-          if (!input["nameTutor"]) {
-            isValid = false;
-            errors["nameTutor"] = "Por favor, ingrese el nombre del tutor/a.";
-          }
-          
-          if (!input["dniTutor"]) {
-            isValid = false;
-            errors["dniTutor"] = "Por favor, ingrese el dni del tutor/a.";
-          }
-
-          if (typeof input["dniTutor"] !== "undefined") { 
-            if( !(/^\d{8}$/.test(input["dniTutor"])) ) {
-            isValid = false;
-            errors["dniTutor"] = "Solo se permiten 8 caracteres numéricos. Por ej.: 22743134";
-            }
-          }
-          
-          if (!input["phoneTutor"]) {
-            isValid = false;
-            errors["phoneTutor"] = "Por favor, ingrese el teléfono del tutor/a."; 
-          }
-
-          if (typeof input["phoneTutor"] !== "undefined") { 
-            if(isNaN(input["phoneTutor"]) ) {
-            isValid = false;
-            errors["phoneTutor"] = "Solo se permiten valores numéricos (sin +, () ni -)";
-            }
-          }
-        }
-      }
-
-      if (!input["email"]) {
-        isValid = false;
-        errors["email"] = "Por favor, ingrese su correo electrónico.";
-      }
-    
-      if (typeof input["email"] !== "undefined") {   
-        var pattern2= new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern2.test(input["email"])) {
-          isValid = false;
-          errors["email"] = "Por favor, ingrese un correo electrónico válido.";
-        }
-      }
-    
-      if (!input["userName"]) {
-        isValid = false;
-        errors["userName"] = "Por favor, ingrese su usuario";
-      }
-
-      if (!input["password"]) {
-        isValid = false;
-        errors["password"] = "Por favor, ingrese su contraseña";
-      }
-      
-      if (input["password"] !== input["password2"] ) {
-        isValid = false;
-        errors["password2"] = "Las contraseñas ingresadas no coinciden";
-      } 
-
-    this.setState({
-    errors: errors
-    });
-    
-    return isValid;
-
-  
+    if (!input["firstName"]) {
+      isValid = false;
+      errors["firstName"] = "Por favor, ingrese su nombre.";
     }
 
+    if (!input["lastName"]) {
+      isValid = false;
+      errors["lastName"] = "Por favor, ingrese su apellido.";
+    }
+  
+    if (!input["dni"]) {
+      isValid = false;
+      errors["dni"] = "Por favor, ingrese su DNI.";
+    }
+
+    if (typeof input["dni"] !== "undefined") { 
+      if( !(/^\d{8}$/.test(input["dni"])) ) {
+      isValid = false;
+      errors["dni"] = "Solo se permiten 8 caracteres numéricos. Por ej.: 22743134";
+      }
+    }
+
+    if (!input["street"]) {
+      isValid = false;
+      errors["street"] = "Por favor, ingrese su dirección.";
+    }
+
+    if (!input["city"]) {
+      isValid = false;
+      errors["city"] = "Por favor, ingrese su ciudad.";
+    }
+
+    if (!input["phoneNumber"]) {
+      isValid = false;
+      errors["phoneNumber"] = "Por favor, ingrese su celular.";
+    } 
+
+    if (typeof input["phoneNumber"] !== "undefined") { 
+      if(isNaN(input["phoneNumber"]) ) {
+      isValid = false;
+      errors["phoneNumber"] = "Solo se permiten valores numéricos (sin +, () ni -)";
+      }
+    }
+
+    if (!input["dateOfBirth"]) {
+      isValid = false;
+      errors["dateOfBirth"] = "Por favor, ingrese su fecha de nacimiento.";
+
+    } 
     
+    if (typeof input["dateOfBirth"] !== "undefined") { 
+    var edad=this.calcular_edad(input["dateOfBirth"]);
+      if ((edad<18) && (document.getElementById("tutor").className="invisible")) {
+        errors["dateOfBirth"] = "Es menor de edad. Debe completar los datos de su tutor/a.";
+        document.getElementById("tutor").classList.replace("invisible", "visible");
+
+        if (!input["nameTutor"]) {
+          isValid = false;
+          errors["nameTutor"] = "Por favor, ingrese el nombre del tutor/a.";
+        }
+        
+        if (!input["dniTutor"]) {
+          isValid = false;
+          errors["dniTutor"] = "Por favor, ingrese el dni del tutor/a.";
+        }
+
+        if (typeof input["dniTutor"] !== "undefined") { 
+          if( !(/^\d{8}$/.test(input["dniTutor"])) ) {
+          isValid = false;
+          errors["dniTutor"] = "Solo se permiten 8 caracteres numéricos. Por ej.: 22743134";
+          }
+        }
+        
+        if (!input["phoneTutor"]) {
+          isValid = false;
+          errors["phoneTutor"] = "Por favor, ingrese el teléfono del tutor/a."; 
+        }
+
+        if (typeof input["phoneTutor"] !== "undefined") { 
+          if(isNaN(input["phoneTutor"]) ) {
+          isValid = false;
+          errors["phoneTutor"] = "Solo se permiten valores numéricos (sin +, () ni -)";
+          }
+        }
+      }
+    }
+
+    if (!input["email"]) {
+      isValid = false;
+      errors["email"] = "Por favor, ingrese su correo electrónico.";
+    }
+  
+    if (typeof input["email"] !== "undefined") {   
+      var pattern2= new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern2.test(input["email"])) {
+        isValid = false;
+        errors["email"] = "Por favor, ingrese un correo electrónico válido.";
+      }
+    }
+  
+    if (!input["userName"]) {
+      isValid = false;
+      errors["userName"] = "Por favor, ingrese su usuario";
+    }
+
+    if (!input["password"]) {
+      isValid = false;
+      errors["password"] = "Por favor, ingrese su contraseña";
+    }
+    
+    if (input["password"] !== input["password2"] ) {
+      isValid = false;
+      errors["password2"] = "Las contraseñas ingresadas no coinciden";
+    } 
+
+  this.setState({
+  errors: errors
+  });
+  console.log(isValid);
+  return isValid;
+  
+  } 
+
     render() {
         return (
-        <form action='http://localhost:5000/register' method='post' id="formulario" onReset>
+        <form action='http://localhost:5000/register' method='post'>
         <div class="form-group row mb-3">
         <label className="col-3">Nombre</label>
         <input
@@ -205,7 +202,7 @@ handleSubmit(event) {
               onChange={this.handleChange}
               className="col-9" 
               placeholder="Ingrese aquí su nombre"
-              autofocus/>
+              />
         <div className="text-danger">{this.state.errors.firstName}</div>
         </div>
       
@@ -295,6 +292,17 @@ handleSubmit(event) {
         </div>
             
         <div class="form-group row mb-3">
+        <label className="col-3">Rol</label>
+        <select 
+        className="col-9"
+        name="role">
+        <option disabled selected>Elija su rol</option>
+        <option>Jugador/a</option>
+        <option>Profesor/a</option>
+        </select>
+        </div>
+
+        <div class="form-group row mb-3">
         <label className="col-3">Email</label>
             <input
             type="text" 
@@ -312,14 +320,20 @@ handleSubmit(event) {
         <label className="col-3">Usuario</label>
             <input
             type="text" 
+<<<<<<< HEAD
             id="userName"
             name="username"
             value={this.state.input.userName}
+=======
+            id="username"
+            name="username"
+            value={this.state.input.username}
+>>>>>>> origin/feature-Julia-Front
             onChange={this.handleChange}
             className="col-9" 
             placeholder="Ingrese su usuario"
             autofocus/>
-        <div className="text-danger">{this.state.errors.userName}</div>
+        <div className="text-danger">{this.state.errors.username}</div>
         </div>
             
         <div class="form-group row mb-3">
@@ -399,8 +413,6 @@ handleSubmit(event) {
         </div>
 
         </div>
-
-        
 
         
         </form>

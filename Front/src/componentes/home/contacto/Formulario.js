@@ -25,8 +25,9 @@ handleSubmit(event) {
     input["name"] = "";
     input["email"] = "";
     input["subject"] = "";
+    input["message"]="";
     this.setState({input:input});
-
+    
     alert('Mensaje enviado con éxito! Te contactaremos a la brevedad');
   }
 }
@@ -75,8 +76,9 @@ validate(){
   this.setState({
     errors: errors
   });
-  
+  console.log(isValid);
   return isValid;
+
 }
 
   render() {
