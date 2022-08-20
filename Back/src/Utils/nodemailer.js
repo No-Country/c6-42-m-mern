@@ -10,21 +10,24 @@ const transporter = createTransport({
 });
 
 const contactMailOptions = (values) => {
-  let {name,email,subject,message} = values;
+  let {name,club,email,subject,message} = values;
   return {
     from: `${name} -- ${email}`,
     to: process.env.NODEMAILER_USER,
-    subject,
+    subject:`Este mensaje es para el club ${club} : ${subject}`,
     text:message
     }
 }
 
-const mailOptions = {
-  from: 'Sitio de Reservas de Canchas Deportivas',
+const mailOptions = (confirmationLink,userEmail) =>{
+  console.log(confirmationLink);
+  return {
+  from: "Sistema de reservas deportivas",
   // Cambiar to: hacia quien vaya dirigido (el email del usuario)
-  to: process.env.NODEMAILER_USER,
+  to: userEmail,
+  cc:process.env.NODEMAILER_USER,
   subject: 'Confirmacion de cuenta',
-  html: '<h3>Por favor acive su cuenta clickeando el siguiente enlace <a href="http://localhost:8080/activar-cuenta">ACTIVAR CUENTA</a></h3>'
-};
+  html: `<h3>Por favor active su cuenta clickeando el siguiente enlace <a href="${confirmationLink}">ACTIVAR CUENTA</a></h3>`
+}}
 
 module.exports = { transporter, mailOptions, contactMailOptions };
