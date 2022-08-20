@@ -20,7 +20,6 @@ const contactMailOptions = (values) => {
 }
 
 const mailOptions = (confirmationLink,userEmail) =>{
-  console.log(confirmationLink);
   return {
   from: "Sistema de reservas deportivas",
   // Cambiar to: hacia quien vaya dirigido (el email del usuario)

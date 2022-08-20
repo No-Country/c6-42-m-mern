@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("../Utils/passport-strategies");
 const { transporter, mailOptions, contactMailOptions } = require("../Utils/nodemailer");
 const profesorSchema = require("../models/profesorModel");
+const confirmAccount = require("../middlewares/confirmAccount");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 let isAuth = (req, res, next) => {
@@ -11,9 +13,7 @@ let isAuth = (req, res, next) => {
     res.redirect('error');
 }
 
-router.get('/activar-cuenta', (req, res, next) => {
-    res.send('Cuenta Activada!');
-});
+router.get('/activar-cuenta/:verToken', confirmAccount);
 
 router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
@@ -37,9 +37,9 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/activar', async (req, res, next) => {
     try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log(info);
-        res.redirect('http://localhost:3000/');
+        // const info = await transporter.sendMail(mailOptions);
+        // console.log(info);
+        res.redirect('http://localhost:3000');
     } catch (err) {
         console.log(err);
         res.send(err);
