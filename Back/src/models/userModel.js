@@ -49,6 +49,11 @@ const userSchema = new mongoose.Schema(
                 default: null
             },
         },
+        verToken:String,
+        confirmedAccount:{
+            type:Boolean,
+            default:false
+        },
         dateOfBirth: {
             type: Date,
             required: true,
