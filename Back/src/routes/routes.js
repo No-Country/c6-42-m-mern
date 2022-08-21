@@ -3,8 +3,9 @@ const passport = require("../Utils/passport-strategies");
 const { transporter, mailOptions, contactMailOptions } = require("../Utils/nodemailer");
 const profesorSchema = require("../models/profesorModel");
 const confirmAccount = require("../middlewares/confirmAccount");
-const jwt = require("jsonwebtoken");
 const router = express.Router();
+const forgetPassword = require("../middlewares/forgetPassword");
+const createNewPass = require("../middlewares/createNewPass");
 
 let isAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -13,11 +14,15 @@ let isAuth = (req, res, next) => {
     res.redirect('error');
 }
 
+router.put('/new-password/:resetToken',createNewPass);
+
 router.get('/activar-cuenta/:verToken', confirmAccount);
 
 router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
 });
+
+router.put('/forgot-password',forgetPassword);
 
 router.get('/jugadores/:id', isAuth, (req, res, next) => {
     console.log(req.params);
