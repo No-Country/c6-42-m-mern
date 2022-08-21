@@ -23,7 +23,7 @@ handleSubmit(event) {
       if(this.validate()){
         console.log(this.state);
         let input = {};
-        input["userName"] = "";
+        input["username"] = "";
         input["password"] = "";
         this.setState({input:input});
     
@@ -36,9 +36,9 @@ handleSubmit(event) {
       let errors = {};
       let isValid = true;
     
-      if (!input["userName"]) {
+      if (!input["username"]) {
         isValid = false;
-        errors["userName"] = "Por favor, ingrese su usuario.";
+        errors["username"] = "Por favor, ingrese su usuario.";
       }
     
     /*   if (typeof input['name"] !== "undefined"){
@@ -53,8 +53,6 @@ handleSubmit(event) {
         isValid = false;
         errors["password"] = "Por favor, ingrese su contraseña.";
       }
-    
-
 
       this.setState({
         errors: errors
@@ -67,25 +65,29 @@ render(){
     return(
         <form onSubmit={this.handleSubmit} className="mb-3">
             <div class="form-group row mb-3">
-              <label class="col-3">Usuario</label>
+              <label id="label_contacto" class="col-3">Usuario</label>
+              <div className="col-9" >
               <input
                 type="text"
-                name="userName"
-                value={this.state.input.userName}
+                name="username"
+                value={this.state.input.username}
                 onChange={this.handleChange}
-                className="col-9" 
+                className="form-control"
                 placeholder="Ingrese su usuario"/>
-            <div className="text-danger">{this.state.errors.userName}</div>    
+              </div>
+            <div className="text-danger">{this.state.errors.username}</div>    
             </div>
             <div class="form-group row mb-3">
-              <label class="col-3">Contraseña</label>
+              <label id="label_contacto" class="col-3">Contraseña</label>
+              <div className="col-9" >
               <input
                 type="text"
                 name="password"
                 value={this.state.input.password}
                 onChange={this.handleChange}
-                className="col-9" 
+                className="form-control" 
                 placeholder="Ingrese su contraseña"/>
+            </div>
             <div className="text-danger">{this.state.errors.password}</div>    
             </div>
 
