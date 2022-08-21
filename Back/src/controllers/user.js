@@ -41,7 +41,7 @@ class User {
       })
     newUser.verToken = userToken;
     const confirmationLink = `https://localhost:5000/activar-cuenta/${userToken}`;
-    await transporter.sendMail(mailOptions(confirmationLink, newUser.email));
+    await transporter.sendMail(mailOptions(confirmationLink, newUser.email,"activation"));
     const res = await newUser.save();
 
 
