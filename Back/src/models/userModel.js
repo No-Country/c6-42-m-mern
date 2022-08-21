@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema(
             },
         },
         verToken:String,
+        resetToken:String,
         confirmedAccount:{
             type:Boolean,
             default:false
