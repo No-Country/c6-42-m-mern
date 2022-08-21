@@ -4,7 +4,6 @@ const userModel = require("../models/userModel");
 const confirmAccount = async (req, res) => {
     try {
         const { verToken } = req.params;
-        console.log(verToken);
         if (!verToken) return res.status(403).json({ message: "No se recibió el Token" });
 
         const decoded = jwt.verify(verToken, process.env.JWT_SECRET);
@@ -23,7 +22,7 @@ const confirmAccount = async (req, res) => {
         userExist.confirmedAccount = true;
 
         const token = jwt.sign({ id: userExist._id }, process.env.JWT_SECRET, {
-            expiresIn: 86400,
+            expiresIn: "15m",
           });
 
 
