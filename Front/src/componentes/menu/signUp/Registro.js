@@ -1,8 +1,6 @@
 import React from 'react';
-import 'bootswatch/dist/minty/bootstrap.min.css'; 
 
-
-class Registro extends React.Component {
+class Registro2 extends React.Component {
 
 constructor() {
     super();
@@ -13,7 +11,6 @@ constructor() {
    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
 handleChange(event) {
@@ -191,159 +188,211 @@ handleSubmit(event) {
 
     render() {
         return (
-        <form action='http://localhost:5000/register' method='post'>
+        <form action='http://localhost:5000/register' method='post' onSubmit={this.handleSubmit}>
+
         <div class="form-group row mb-3">
-        <label className="col-3">Nombre</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Nombre</label>
+        <div className="col-m-9">
         <input
               type="text" 
               name="firstName"
               id="firstName"
               value={this.state.input.firstName}
               onChange={this.handleChange}
-              className="col-9" 
+              className="form-control" 
               placeholder="Ingrese aquí su nombre"
               />
+        </div>  
         <div className="text-danger">{this.state.errors.firstName}</div>
         </div>
+           
+        
       
-
-        <div class="form-group row mb-3">
-        <label className="col-3">Apellido</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Apellido</label>
+        <div className="col-m-9">
         <input
               type="text" 
               name="lastName"
               id="lastName" 
               value={this.state.input.lastName}
               onChange={this.handleChange}
-              className="col-9" 
+              className="form-control" 
               placeholder="Ingrese aquí su apellido" 
               autofocus/>
+        </div>
         <div className="text-danger">{this.state.errors.lastName}</div>
         </div>
+        </div> 
 
         <div class="form-group row mb-3">
-        <label className="col-3">DNI</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">DNI</label>
+        <div  className="col-m-9" >
         <input
             type="text" 
             name="dni"
             id="dni" 
             value={this.state.input.dni}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese su número de documento"
             autofocus/>
+        </div>
         <div className="text-danger">{this.state.errors.dni}</div>
+        
         </div>
 
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Género</label>
+        <div class="col-m-9">
+        <select className="form-select" name="gender">
+        <option disabled selected>Seleccione género</option>
+        <option>Femenino</option>
+        <option>Masculino</option>
+        <option>Prefiero no responder</option>
+        </select> 
+        </div>
+        </div>
+        </div>
+
+        
         <div class="form-group row mb-3">
-        <label className="col-3">Dirección</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Dirección</label>
+        <div className="col-m-9" >
             <input
             type="text" 
             name="street"
             id="street" 
             value={this.state.input.street}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese aquí la dirección"
             autofocus/>
         <div className="text-danger">{this.state.errors.street}</div>
         </div>
-
-        <div class="form-group row mb-3">
-        <label className="col-3">Ciudad</label>
+        </div>
+    
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Ciudad</label>
+        <div className="col-m-9" >
             <input
             type="text" 
             name="city"
             id="city" 
             value={this.state.input.city}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese aquí la ciudad"
             autofocus/>
          <div className="text-danger">{this.state.errors.city}</div>
         </div>
+        </div>
+        </div>
             
         <div class="form-group row mb-3" >
-        <label className="col-3">Celular</label>
-              <input
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Celular</label>
+        <div className="col-m-9" >
+        <input
               type="phone" 
               id="phoneNumber"
               name="phoneNumber"
               value={this.state.input.phoneNumber}
               onChange={this.handleChange}
-              className="col-9" 
+              className="form-control" 
               placeholder="Ingrese su número de teléfono"
               autofocus/>
+        </div>
+             
          <div className="text-danger">{this.state.errors.phoneNumber}</div>      
             </div>
         
-        <div class="form-group row mb-3">
-        <label className="col-3">Fecha de nacimiento</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Fecha de nacimiento</label>
+        <div className="col-m-9">
             <input
             type="date" 
             id="dateOfBirth" 
             name="dateOfBirth" 
             value={this.state.input.dateOfBirth}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese aquí su fecha de nacimiento"
             autofocus/>
          <div className="text-danger">{this.state.errors.dateOfBirth}</div>
         </div>
+        </div>
+        </div>
+       
 
         <div class="form-group row mb-3">
-        <label className="col-3">Email</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Email</label>
+        <div className="col-m-9">
             <input
             type="text" 
             id="email"
             name="email"
             value={this.state.input.email}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese aquí su email"
             autofocus/>
-         <div className="text-danger">{this.state.errors.email}</div>    
+        </div>
+        <div className="text-danger">{this.state.errors.email}</div>    
         </div>
 
-        <div class="form-group row mb-3">
-        <label className="col-3">Usuario</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Usuario</label>
+        <div className="col-m-9">
             <input
             type="text" 
             id="username"
             name="username"
             value={this.state.input.username}
             onChange={this.handleChange}
-            className="col-9" 
+            className="form-control" 
             placeholder="Ingrese su usuario"
             autofocus/>
         <div className="text-danger">{this.state.errors.username}</div>
         </div>
-            
+        </div>
+        </div>
+        
         <div class="form-group row mb-3">
-        <label className="col-3">Contraseña</label>
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Contraseña</label>
+        <div className="col-m-9">
             <input
             type="password" 
             id="password" 
-            className="col-9" 
+            className="form-control" 
             name="password"
             value={this.state.input.password}
             onChange={this.handleChange}
             placeholder="Ingrese aquí su contraseña"/>
-         <div className="text-danger">{this.state.errors.password}</div>
         </div>
-            
-        <div class="form-group row mb-3">
-        <label className="col-3">Repetir contraseña</label>
+        <div className="text-danger">{this.state.errors.password}</div>
+        </div> 
+
+        <div className="col-6">
+        <label id="label_contacto" className="col-m-3">Repetir contraseña</label>
+        <div className="col-m-9">
             <input
             type="password" 
-            className="col-9" 
+            className="form-control" 
             id="password2"
             name="password2"
             value={this.state.input.password2}
             onChange={this.handleChange}
             placeholder="Repita su contraseña"
             autofocus/>
+        </div>
         <div className="text-danger">{this.state.errors.password2}</div>
+        </div>
         </div>
 
         <div className="text-center">
@@ -354,7 +403,7 @@ handleSubmit(event) {
         <h3>Completar datos de tutor/a</h3>
         
         <div class="form-group row mb-3">
-        <label className="col-3">Nombre y apellido</label>
+        <label id="label_contacto" className="col-3">Nombre y apellido</label>
         <input
               type="text" 
               name="nameTutor"
@@ -368,7 +417,7 @@ handleSubmit(event) {
         </div>
 
         <div class="form-group row mb-3">
-        <label className="col-3">DNI</label>
+        <label id="label_contacto" className="col-3">DNI</label>
         <input
               type="text" 
               name="dniTutor"
@@ -382,7 +431,7 @@ handleSubmit(event) {
         </div>
 
         <div class="form-group row mb-3">
-        <label className="col-3">Celular</label>
+        <label id="label_contacto" className="col-3">Celular</label>
         <input
               type="text" 
               name="phoneTutor"
@@ -403,4 +452,4 @@ handleSubmit(event) {
     };
 };
 
-export default Registro;
+export default Registro2;

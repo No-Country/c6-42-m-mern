@@ -20,22 +20,6 @@ handleChange(event) {
        
 handleSubmit(event) {
     event.preventDefault();
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Credentials': 'include'
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        // 'Access-Control-Allow-Methods': 'POST'
-      },
-      body: JSON.stringify(this.state.input)
-    };
-
-    fetch('http://localhost:5000/login', requestOptions)
-      .then(res => res).then(res => console.log(res.json()));
-
       if(this.validate()){
         console.log(this.state);
         let input = {};
@@ -43,7 +27,7 @@ handleSubmit(event) {
         input["password"] = "";
         this.setState({input:input});
     
-        // alert('');
+        alert('');
       }
     }
     
@@ -69,8 +53,6 @@ handleSubmit(event) {
         isValid = false;
         errors["password"] = "Por favor, ingrese su contraseña.";
       }
-    
-
 
       this.setState({
         errors: errors
@@ -83,25 +65,29 @@ render(){
     return(
         <form onSubmit={this.handleSubmit} className="mb-3">
             <div class="form-group row mb-3">
-              <label class="col-3">Usuario</label>
+              <label id="label_contacto" class="col-3">Usuario</label>
+              <div className="col-9" >
               <input
                 type="text"
                 name="username"
                 value={this.state.input.username}
                 onChange={this.handleChange}
-                className="col-9" 
+                className="form-control"
                 placeholder="Ingrese su usuario"/>
+              </div>
             <div className="text-danger">{this.state.errors.username}</div>    
             </div>
             <div class="form-group row mb-3">
-              <label class="col-3">Contraseña</label>
+              <label id="label_contacto" class="col-3">Contraseña</label>
+              <div className="col-9" >
               <input
-                type="password"
+                type="text"
                 name="password"
                 value={this.state.input.password}
                 onChange={this.handleChange}
-                className="col-9" 
+                className="form-control" 
                 placeholder="Ingrese su contraseña"/>
+            </div>
             <div className="text-danger">{this.state.errors.password}</div>    
             </div>
 

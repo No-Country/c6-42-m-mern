@@ -7,7 +7,8 @@
 img {
   height: 100%;
   width: 100%;
-  object-fit: cover;}
+  object-fit: cover;
+}
 
 .center{
   text-align: center;
@@ -102,23 +103,6 @@ footer{
   padding-bottom: 1%;
 }
 
-.cards{
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.carousel-caption {
-  text-align: center;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  width: 50%; 
-  object-fit: cover;
-  background-color:black;
-}
-
 .fila{
   text-align: center;
   display: block;
@@ -157,14 +141,6 @@ footer{
   height: 100%;
   width: 100%;
  }
-
-/*  .Slider{
-  width:100%;
-  margin: 0em;
-  text-align:center;
-  justify-content: center;
-  display: block;
- } */
 
 .div-formularios{
   align-items: center;

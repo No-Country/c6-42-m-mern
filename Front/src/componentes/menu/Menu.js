@@ -1,19 +1,20 @@
 import React from 'react';
 import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import {Dropdown} from 'react-bootstrap';
-import SignIn from './signIn/SignIn.js'; 
-import SignUp from './signUp/SignUp.js';
+import SignIn from './signIn/SignIn.js';  
+
 // import SignOut from './signOut/SignOut.js';
+
 
 class Menu extends React.Component {
     render (){
       return(
-      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#Home"><strong>Deportes Online</strong></a>
         <div className="collapse navbar-collapse align-content-right">
           <ul className="navbar-nav ms-auto">
-          <li className="nav-link dropdown">
+          <li className="nav-link dropdown m-1">
           <Dropdown>
             <Dropdown.Toggle >Menú</Dropdown.Toggle>
             <Dropdown.Menu>
@@ -26,8 +27,7 @@ class Menu extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
         </li>
-        <li class="nav-link"><SignUp/></li> 
-        <li class="nav-link"><SignIn/></li>
+        <div><li className="nav-link"><SignIn/></li></div>
         {/* <li id="nav-item"><SignOut/></li>  */}
         </ul> 
         </div>
