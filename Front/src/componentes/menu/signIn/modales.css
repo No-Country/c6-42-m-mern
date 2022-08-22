@@ -74,3 +74,15 @@
   align-items: right;
   text-align:right;
 }
+
+.closeButton{
+  background-color: #f8f9fa;
+  color:grey;
+  border-color:  #f8f9fa;
+}
+
+.closeButton:hover{
+  background-color: #f8f9fa;
+  color:grey;
+  border-color:  #f8f9fa;
+ }

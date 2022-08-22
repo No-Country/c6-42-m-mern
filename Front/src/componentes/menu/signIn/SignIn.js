@@ -61,8 +61,9 @@ render() {
        id="modal1" 
         isOpen={loginOpened} 
         onRequestClose={this.closeModal("login")} >
-        <ModalHeader className="modal-header" closeButton>
+        <ModalHeader className="modal-header">
         <ModalTitle className="modal-title">Iniciar sesión</ModalTitle>
+        <Button className="closeButton" onClick={this.closeModal("login")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body"> 
           <Login/>
@@ -78,8 +79,9 @@ render() {
         id="modal2" 
         isOpen={signupOpened} 
         onRequestClose={this.closeModal("signup")}>
-        <ModalHeader className="modal-header" closeButton>
+        <ModalHeader className="modal-header">
         <ModalTitle className="modal-title">Registrarse</ModalTitle>
+        <Button className="closeButton" onClick={this.closeModal("signup")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body">
           <Registro/>
@@ -94,8 +96,9 @@ render() {
         id="modal3" 
         isOpen={resetOpened} 
         onRequestClose={this.closeModal("reset")}>
-        <ModalHeader className="modal-header" closeButton>
+        <ModalHeader className="modal-header">
         <ModalTitle className="modal-title">Restablecer contraseña</ModalTitle>
+        <Button className="closeButton" onClick={this.closeModal("reset")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body">
           <Reset/>

@@ -10,8 +10,8 @@ function SignOut() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>LogOut</Button>
-      <Modal show={show} onHide={handleClose} className="modal-s">
+      <Button variant="secondary" onClick={handleShow}>Logout</Button>
+      <Modal show={show} onHide={handleClose} className="modal-m">
         <Modal.Header closeButton>
           <Modal.Title>Cerrar sesión</Modal.Title>
         </Modal.Header>

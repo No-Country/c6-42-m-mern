@@ -7,20 +7,18 @@ import SignOut from './signOut/SignOut.js';
 class Menu extends React.Component {
     render (){
       return(
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#Home"><strong>Deportes Online</strong></a>
         <div className="collapse navbar-collapse align-content-right">
           <ul className="navbar-nav ms-auto">
-          <li className="nav-link dropdown">
+          <li id="nav-item">
           <Dropdown>
             <Dropdown.Toggle >Menú</Dropdown.Toggle>
             <Dropdown.Menu>
-            <Dropdown.Item href="#Nosotros">Nosotros</Dropdown.Item>
-            <Dropdown.Item href="#Clubes">Clubes</Dropdown.Item>
-            <Dropdown.Item href="#Profesores">Profesores</Dropdown.Item>  
-            <Dropdown.Item href="#Tarifas">Tarifas</Dropdown.Item>
-            <Dropdown.Item href="#Reservas">Reservas</Dropdown.Item>
+            <Dropdown.Item href="/">Home</Dropdown.Item>
+            <Dropdown.Item href="#Perfil">Mis datos</Dropdown.Item>
+            <Dropdown.Item href="#Reservas">Mis reservas</Dropdown.Item>
             <Dropdown.Item href="#Contacto">Contacto</Dropdown.Item>  
             </Dropdown.Menu>
           </Dropdown>
