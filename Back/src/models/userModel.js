@@ -52,6 +52,20 @@ const userSchema = new mongoose.Schema(
         dateOfBirth: {
             type: Date,
             required: true,
+        },
+        role: {
+            type: String,
+            enum: ['jugador', 'profesor'],
+            default: 'jugador'
+        },
+        status: {
+            type: String,
+            enum: ['pending', 'active'],
+            default: 'pending'
+        },
+        gender: {
+            type: String,
+            required: true
         }
     }
 );
