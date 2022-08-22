@@ -290,17 +290,6 @@ handleSubmit(event) {
             autofocus/>
          <div className="text-danger">{this.state.errors.dateOfBirth}</div>
         </div>
-            
-        <div class="form-group row mb-3">
-        <label className="col-3">Rol</label>
-        <select 
-        className="col-9"
-        name="role">
-        <option disabled selected>Elija su rol</option>
-        <option>Jugador/a</option>
-        <option>Profesor/a</option>
-        </select>
-        </div>
 
         <div class="form-group row mb-3">
         <label className="col-3">Email</label>
@@ -320,15 +309,9 @@ handleSubmit(event) {
         <label className="col-3">Usuario</label>
             <input
             type="text" 
-<<<<<<< HEAD
-            id="userName"
-            name="username"
-            value={this.state.input.userName}
-=======
             id="username"
             name="username"
             value={this.state.input.username}
->>>>>>> origin/feature-Julia-Front
             onChange={this.handleChange}
             className="col-9" 
             placeholder="Ingrese su usuario"

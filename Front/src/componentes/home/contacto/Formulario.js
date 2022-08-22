@@ -19,6 +19,16 @@ handleChange(event) {
    
 handleSubmit(event) {
   event.preventDefault();
+
+  fetch('http://localhost:5000/contact', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.input)
+    }).then(res => res).then(res => console.log(res.json()));
+
   if(this.validate()){
     console.log(this.state);
     let input = {};
@@ -83,14 +93,15 @@ validate(){
 
   render() {
     return ( 
+      // action='http://localhost:5000/contact'
     <form onSubmit={this.handleSubmit} className="mb-2">
-        <div class="form-group row mb-4">
-          <label for="name" class="col-sm-3 col-form-label text-right">Nombre y apellido</label>
-          <div class="col-sm-6">
+        <div className="form-group row mb-4">
+          <label for="name" className="col-sm-3 col-form-label text-right">Nombre y apellido</label>
+          <div className="col-sm-6">
           <input 
           type="text" 
           name="name"
-          class="form-control" 
+          className="form-control" 
           id="name" 
           value={this.state.input.name}
           onChange={this.handleChange}
@@ -99,15 +110,15 @@ validate(){
         <div className="text-danger">{this.state.errors.name}</div>
         </div>
 
-        <div class="form-group row mb-4">
-        <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
-        <div class="col-sm-6">
+        <div className="form-group row mb-4">
+        <label for="email" className="col-sm-3 col-form-label text-right">Email</label>
+        <div className="col-sm-6">
         <input 
         type="text" 
         name="email" 
         value={this.state.input.email}
         onChange={this.handleChange}
-        class="form-control" 
+        className="form-control" 
         placeholder="Ingrese su email" 
         id="email" />
         </div>
@@ -115,24 +126,24 @@ validate(){
         </div>
        
 
-        <div class="row mb-4">
-        <label for="subject" class="col-sm-3 col-form-label text-right">Asunto</label>
-        <div class="col-sm-6">
+        <div className="row mb-4">
+        <label for="subject" className="col-sm-3 col-form-label text-right">Asunto</label>
+        <div className="col-sm-6">
         <input 
         type="text" 
         name="subject" 
         value={this.state.input.subject}
         onChange={this.handleChange}
-        class="form-control" 
+        className="form-control" 
         id="email" 
         placeholder="Ingrese el asunto"/>
         </div>
         <div className="text-danger">{this.state.errors.subject}</div>
         </div>
        
-        <div class="row mb-4">
-        <label for="message" class="col-sm-3 col-form-label text-right">Mensaje</label>
-        <div class="col-sm-6">
+        <div className="row mb-4">
+        <label for="message" className="col-sm-3 col-form-label text-right">Mensaje</label>
+        <div className="col-sm-6">
         <textarea 
         className="form-control" 
         id="message" 
