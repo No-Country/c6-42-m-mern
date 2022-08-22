@@ -6,7 +6,7 @@ class User {
     this.collection = collection;
   }
 
-  async exist(usr) {
+  async findOne(usr) {
     const model = mongoose.model(this.collection);
     const user = await model.find({ username: usr });
     if (user.length === 0) return false;
@@ -33,9 +33,12 @@ class User {
     return res;
   };
 
-  find() {};
-
-  findAll() {};
+  async findAll() {
+    const model = mongoose.model(this.collection);
+    const user = await model.find();
+    if (user.length === 0) return false;
+    return user; 
+  };
 
   delete() {};
 
