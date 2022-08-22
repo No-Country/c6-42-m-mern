@@ -5,7 +5,7 @@ const userModel = require("../models/userModel");
 
 module.exports = (passport) => {
   passport.use('login', new passportStrategy(async (username, password, done) => {
-    let user = await userController.exist(username);
+    let user = await userController.findOne(username);
   
     if (!user) return done(null, false);
     if (! await userModel.comparePassword(password, user[0].password)) return done(null, false);
@@ -16,7 +16,7 @@ module.exports = (passport) => {
   passport.use('register', new passportStrategy({
     passReqToCallback: true
   }, async (req, username, password, done) => {
-    let exist = await userController.exist(username);
+    let exist = await userController.findOne(username);
   
     if (exist) return done("Usuario existente");
     let user = await userController.create(req.body);

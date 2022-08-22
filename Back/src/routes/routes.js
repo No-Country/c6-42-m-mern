@@ -1,9 +1,10 @@
 const express = require("express");
-// const passport = require("../Utils/passport-strategies");
 const passport = require("passport");
 const { transporter, mailOptions, contactMailOptions } = require("../Utils/nodemailer");
-// const profesorSchema = require("../models/profesorModel");
 const router = express.Router();
+// const forgetPassword = require("../middlewares/forgetPassword");
+const createNewPass = require("../middlewares/createNewPassword");
+const confirmAccount = require("../middlewares/confirmAccount");
 
 let isAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -12,9 +13,15 @@ let isAuth = (req, res, next) => {
     res.redirect('error');
 }
 
-router.get('/activar-cuenta', (req, res, next) => {
-    res.send('Cuenta Activada!');
+router.put('/new-password/:resetToken',createNewPass);
+
+router.get('/activar-cuenta/:verToken', confirmAccount);
+
+router.get('/error', async (req, res, next) => {
+    res.send('algo salio mal :(');
 });
+
+// router.put('/forgot-password',forgetPassword);
 
 router.get('/error', async (req, res, next) => {
     console.log('ruta error');

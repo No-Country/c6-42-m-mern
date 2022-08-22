@@ -3,6 +3,7 @@ const userSchema = require("../models/userModel");
 
 const createNewPass = async (req, res) => {
   try {
+    console.log('req', req.params)
     let { resetToken } = req.params;
     let { newPassword } = req.body;
 
@@ -32,4 +33,4 @@ const createNewPass = async (req, res) => {
 
 }
 
-module.exports = createNewPass();
+module.exports = createNewPass;
