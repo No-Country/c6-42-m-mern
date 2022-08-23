@@ -81,7 +81,7 @@ render(){
               <label id="label_contacto" class="col-3">Contraseña</label>
               <div className="col-9" >
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={this.state.input.password}
                 onChange={this.handleChange}
