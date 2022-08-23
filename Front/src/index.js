@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+//import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import './index.css';
 import "bootstrap/dist/js/bootstrap.min.js"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
