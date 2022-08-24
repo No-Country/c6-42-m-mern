@@ -21,7 +21,7 @@ const forgetPassword = async (req, res) => {
 
         user.resetToken = token;
 
-        const confirmationLink = `http://localhost:5000/new-password/${token}`
+        const confirmationLink = `http://localhost:${process.env.PORT}/new-password/${token}`
 
         await user.save();
 
