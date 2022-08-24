@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("../Utils/passport-strategies");
-const { transporter, mailOptions, contactMailOptions } = require("../Utils/nodemailer");
+const { transporter, contactMailOptions } = require("../Utils/nodemailer");
 const profesorSchema = require("../models/profesorModel");
 const confirmAccount = require("../middlewares/confirmAccount");
 const router = express.Router();
@@ -17,6 +17,8 @@ let isAuth = (req, res, next) => {
 router.put('/new-password/:resetToken',createNewPass);
 
 router.get('/activar-cuenta/:verToken',confirmAccount);
+
+router.get('/profile',userProfile);
 
 router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
