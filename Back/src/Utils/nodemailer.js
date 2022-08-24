@@ -41,4 +41,4 @@ const mailOptions = (confirmationLink, userEmail, option) => {
   }
 }
 
-module.exports = { transporter, mailOptions, contactMailOptions, passwordMailOptions };
+module.exports = { transporter, mailOptions, contactMailOptions };
