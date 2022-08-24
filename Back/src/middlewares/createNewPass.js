@@ -24,6 +24,7 @@ const createNewPass = async (req, res) => {
 
         await user.save();
 
+        return res.status(200).json("password Saved");
     } catch (err) {
         console.log(err);
         return res.status(400).json({ message: "algo salió mal" });
@@ -32,4 +33,4 @@ const createNewPass = async (req, res) => {
 
 }
 
-module.exports = createNewPass();
+module.exports = createNewPass;

@@ -16,7 +16,7 @@ let isAuth = (req, res, next) => {
 
 router.put('/new-password/:resetToken',createNewPass);
 
-router.get('/activar-cuenta/:verToken', confirmAccount);
+router.get('/activar-cuenta/:verToken',confirmAccount);
 
 router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
