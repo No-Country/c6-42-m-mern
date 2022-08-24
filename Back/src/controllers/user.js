@@ -15,8 +15,7 @@ class User {
     return user;
   };
 
-  async create({ firstName, lastName, dateOfBirth, dni, city, street, email, role, phoneNumber, password, username }) {
-    console.log('Llego create');
+  async create({ firstName, lastName, dateOfBirth, dni, city, street, email, phoneNumber, password, username }) {
     const newUser = new userSchema({
       username,
       firstName,
