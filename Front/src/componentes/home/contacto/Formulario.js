@@ -89,7 +89,7 @@ validate(){
 
   render() {
     return ( 
-    <form onSubmit={this.handleSubmit} className="mb-2">
+    <form action='http://localhost:8080/contact' method='post' className="mb-2">
         <div class="form-group row mb-4">
           <label id="label_contacto"for="name" class="col-sm-3 col-form-label text-right">Nombre y apellido</label>
           <div class="col-sm-6">

@@ -85,4 +85,20 @@
   background-color: #f8f9fa;
   color:grey;
   border-color:  #f8f9fa;
+<<<<<<< Updated upstream
  }
+=======
+ }
+
+ #label_contacto{
+  justify-content: right;
+  text-align: right;
+  align-items:flex-end;
+  }
+
+#reset{
+  width: 100%;
+  height: 100%;
+}
+
+>>>>>>> Stashed changes

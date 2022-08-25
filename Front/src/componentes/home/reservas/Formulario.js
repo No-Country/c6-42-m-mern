@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from 'react';
 import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import './reservas.css'
@@ -12,6 +13,17 @@ constructor(props) {
 render(){
     return(
 <form>
+=======
+import React, { useState } from 'react';
+import DatePicker from 'react-date-picker';
+import 'bootswatch/dist/minty/bootstrap.min.css'; 
+import './reservas.css'
+
+function FormReservas () {    
+const [value, onChange] = useState(new Date());
+return(
+<form action='' method='post'>
+>>>>>>> Stashed changes
 <div class="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Deporte</label>
 <div className="col-sm-10">
@@ -41,12 +53,16 @@ render(){
 <div className="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Fecha</label>
 <div className="col-sm-10">
+<<<<<<< Updated upstream
 <input
 className="form-control" 
 type="date"
 minDate='0'
 placeholder="Ingrese aquí su fecha de nacimiento">
 </input>
+=======
+<DatePicker id="datepicker"className="form-control" type="date" name="date" onChange={onChange} value={value} minDate={new Date()} locale="es-ES"/>
+>>>>>>> Stashed changes
 </div>
 </div>
 
@@ -80,6 +96,9 @@ placeholder="Ingrese aquí su fecha de nacimiento">
 </form>
     )
 }
+<<<<<<< Updated upstream
 }
+=======
+>>>>>>> Stashed changes
 
 export default FormReservas;
