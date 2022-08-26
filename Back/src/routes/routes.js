@@ -18,7 +18,9 @@ router.put('/new-password/:resetToken',createNewPass);
 
 router.get('/activar-cuenta/:verToken',confirmAccount);
 
-router.get('/profile',userProfile);
+router.get('/profile',async (req, res, next) => {
+    res.send({data:req.user})}
+);
 
 router.get('/error', async (req, res, next) => {
     res.send('algo salio mal :(');
@@ -56,8 +58,10 @@ router.get('/activar', async (req, res, next) => {
 
 router.post('/contact', async (req, res, next) => {
     try{
-    await transporter.sendMail(contactMailOptions(req.body));
-    res.statusCode(200).send("Su info ha sido enviada");
+    if (req.body.data){
+    await transporter.sendMail(contactMailOptions(req.body.data));
+    res.status(200).send("Su info ha sido enviada");}
+    res.status(403).send("La información no pudo ser procesada, por favor intente nuevamente");
     }catch(err){
         console.log(err);
     }
