@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import './reservas.css';
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 import { DatePicker }  from '@material-ui/pickers';
 import { ThemeProvider } from "@material-ui/styles";
 import { grey } from "@material-ui/core/colors";
@@ -11,7 +11,7 @@ function FormReservas(){
 
 const[dateSelected, changeDateSelected]= useState(new Date());
 
-const defaultMaterialTheme = createMuiTheme({
+const defaultMaterialTheme = createTheme({
     palette: {
       primary: grey,
     },
