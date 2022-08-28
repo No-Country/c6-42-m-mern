@@ -4,11 +4,11 @@ const { transporter, mailOptions } = require("../Utils/nodemailer");
 
 const forgetPassword = async (req, res) => {
     try {
-        let { email } = req.query;
+        let { email } = req.body.data;
         if (!email) return res.status(404).json({ message: "Se necesita una dirección de correo electrónico" })
         const user = await userSchema.findOne({ email });
 
-        if (!user) return res.status(403).json({message:"El usuario no se encuentra registrado"});
+        if (!user) return res.status(403).json({ message: "El usuario no se encuentra registrado" });
 
         const token = jwt.sign({
             id: user._id,
@@ -21,11 +21,11 @@ const forgetPassword = async (req, res) => {
 
         user.resetToken = token;
 
-        const confirmationLink = `http://localhost:${process.env.PORT}/new-password/${token}`
+        const changePwLink = `http://localhost:${process.env.FRONT_URI}/new-password/${token}`
 
         await user.save();
 
-        await transporter.sendMail(mailOptions(confirmationLink, user.email,"renewpass"));
+        await transporter.sendMail(mailOptions(changePwLink, user.email, "renewpass"));
 
         return res.status(200).json({ message: "Email sent" })
 
