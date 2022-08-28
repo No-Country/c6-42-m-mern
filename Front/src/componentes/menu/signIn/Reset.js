@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Reset extends React.Component{
 
@@ -16,7 +15,7 @@ class Reset extends React.Component{
         
 handleChange(event) {
     let input = this.state.input;
-    input[event.target.email] = event.target.value;
+    input[event.target.name] = event.target.value;
     this.setState({input});}
        
 handleSubmit(event) {
@@ -80,6 +79,7 @@ validate(){
       errors["email"] = "Por favor, ingrese un correo electrónico válido.";
     }
   }
+<<<<<<< Updated upstream
 =======
 if (!input["email"]) {
   isValid = false;
@@ -98,14 +98,25 @@ this.setState({errors: errors});
 console.log(isValid);
 >>>>>>> Stashed changes
 return isValid;
+=======
+  this.setState({
+    errors: errors
+    });
+    console.log(isValid);
+    return isValid;
+>>>>>>> Stashed changes
 }
 
 render(){
     return(
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <form onSubmit={this.handleSubmit} className="mb-3">
 =======
         <form action='http://localhost:8080/forgot-password' method='post' id="form-reset" className="mb-3">
+>>>>>>> Stashed changes
+=======
+        <form action='http://localhost:5000//forgot-password' onSubmit={this.handleSubmit} className="mb-3">
 >>>>>>> Stashed changes
             <div class="form-group row mb-3">
               <label id="label_contacto" class="col-3">Email</label>
@@ -128,6 +139,7 @@ render(){
         <div className="text-center">
 <<<<<<< Updated upstream
         <button type="submit" value="Submit"  className="btn btn-success">Enviar</button>
+<<<<<<< Updated upstream
         </div>
         
         {/* <button type="submit" value="Submit"  className="btn btn-secondary">Cancelar</button> */}
@@ -136,6 +148,9 @@ render(){
         <button type="submit" value="Submit" className="btn btn-success align-center">Enviar</button>
         </div>
         
+>>>>>>> Stashed changes
+=======
+        </div>        
 >>>>>>> Stashed changes
         </form>
     )

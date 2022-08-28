@@ -1,5 +1,4 @@
 import React from 'react';
- 
 import Menu from '../menu/Menu'; 
 import Slider from './slider/Slider.js';
 import Footer from '../footer/Footer'; 

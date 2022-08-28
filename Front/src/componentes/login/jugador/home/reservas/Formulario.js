@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from "react";
 import 'bootswatch/dist/minty/bootstrap.min.css'; 
-import './reservas.css'
+import './reservas.css';
+import { createMuiTheme } from "@material-ui/core";
+import { DatePicker }  from '@material-ui/pickers';
+import { ThemeProvider } from "@material-ui/styles";
+import { grey } from "@material-ui/core/colors";
 
-class FormReservas extends React.Component {
 
-constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-}
+function FormReservas(){
 
-render(){
-    return(
-<form>
+const[dateSelected, changeDateSelected]= useState(new Date());
+
+const defaultMaterialTheme = createMuiTheme({
+    palette: {
+      primary: grey,
+    },
+  });
+
+return(
+<form action='' method="post">
 <div class="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Deporte</label>
-<div className="col-sm-10">
+<div className="col-sm-4">
 <select className="form-select" name="deporte">
     <option select disabled>Elegí un deporte</option>
     <option>Fútbol 5</option>
@@ -22,11 +29,8 @@ render(){
     <option>Tenis</option>
 </select> 
 </div>
-</div>
-
-<div class="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Club</label>
-<div className="col-sm-10">
+<div className="col-sm-4">
 <select className="form-select" name="club">
     <option select disabled>Elegí un club</option>
     <option>Pedro Bidegain</option>
@@ -38,24 +42,25 @@ render(){
 </div>
 </div>
 
-<div className="form-group row p-2">
+<div class="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Fecha</label>
-<div className="col-sm-10">
-<input
-className="form-control" 
-type="date"
-minDate='0'
-placeholder="Ingrese aquí su fecha de nacimiento">
-</input>
+<div className="col-sm-4">
+<ThemeProvider theme={defaultMaterialTheme}>
+<DatePicker
+id='datepicker'
+className="form-select"
+name="date"
+value={dateSelected} 
+onChange={changeDateSelected}
+minDate={new Date()}
+maxDate={'01/01/2023'}
+format="dd/MM/yyyy"/>
+</ThemeProvider>
 </div>
-</div>
-
-<div className="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Hora</label>
-<div className="col-sm-10">
-<select className="form-select" name="hora">
-    <option select disabled>Elegí la hora</option>
-    <option>08:00</option>
+<div className="col-sm-4">
+<select className="form-select" name="hour">
+    <option select disabled>Elegí el horario</option>
     <option>09:00</option>
     <option>10:00</option>
     <option>11:00</option>
@@ -72,14 +77,11 @@ placeholder="Ingrese aquí su fecha de nacimiento">
 </select> 
 </div>
 </div>
-
 <div id="boton">
-<button type="submit" value="Submit" className="btn btn-success">Continuar</button>
+<button type="submit" value="Submit" className="btn btn-primary">Confirmar</button>
 </div>
-
 </form>
-    )
-}
+)
 }
 
 export default FormReservas;

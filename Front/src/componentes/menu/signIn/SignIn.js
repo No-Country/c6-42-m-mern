@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './modales.css';
 import {Button, ModalBody, ModalFooter, ModalHeader, ModalTitle} from 'react-bootstrap';
 import Modal from 'react-modal';
@@ -61,14 +60,14 @@ render() {
        id="modal1" 
         isOpen={loginOpened} 
         onRequestClose={this.closeModal("login")} >
-        <ModalHeader className="modal-header">
+        <ModalHeader className="modal-header p-3">
         <ModalTitle className="modal-title">Iniciar sesión</ModalTitle>
-        <Button className="closeButton" onClick={this.closeModal("login")}>X</Button>
+        <Button id="closeButton" onClick={this.closeModal("login")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body"> 
           <Login/>
-          <div><a href="#Reset" id="a-link" className="a-link" onClick={this.openModal("reset")}>Olvidaste tu contraseña? Hacé click acá</a></div>
-          {/* <div><a href="#Registro" className="a-link" onClick={this.openModal("signup")}>Aun no tiene usuario? Registrese acá</a> </div> */}
+          <div><a href="#Reset" className="a-link p-1" onClick={this.openModal("reset")}>Olvidaste tu contraseña? Hacé click acá</a></div>
+          <div><a href="#Registro" className="a-link p-1" onClick={this.openModal("signup")}>Aun no tiene usuario? Registrese acá</a> </div>
           </ModalBody>
           <ModalFooter className="row">
           <div id="boton_footer" className="col-6"><Button className="btn btn-secondary" onClick={this.closeModal("login")}>Cerrar</Button></div>
@@ -81,7 +80,7 @@ render() {
         onRequestClose={this.closeModal("signup")}>
         <ModalHeader className="modal-header">
         <ModalTitle className="modal-title">Registrarse</ModalTitle>
-        <Button className="closeButton" onClick={this.closeModal("signup")}>X</Button>
+        <Button id="closeButton" onClick={this.closeModal("signup")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body">
           <Registro/>
@@ -98,7 +97,7 @@ render() {
         onRequestClose={this.closeModal("reset")}>
         <ModalHeader className="modal-header">
         <ModalTitle className="modal-title">Restablecer contraseña</ModalTitle>
-        <Button className="closeButton" onClick={this.closeModal("reset")}>X</Button>
+        <Button id="closeButton" onClick={this.closeModal("reset")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body">
           <Reset/>
@@ -117,5 +116,3 @@ render() {
 }
 
 export default SignIn;
-
-

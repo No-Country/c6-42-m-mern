@@ -343,7 +343,12 @@ handleSubmit(event) {
 
     render() {
         return (
+<<<<<<< Updated upstream
         <form action='http://localhost:8080/register' method='post'>
+=======
+        <form action='http://localhost:5000/register' method='post' onSubmit={this.handleSubmit}>
+
+>>>>>>> Stashed changes
         <div class="form-group row mb-3">
         <div className="col-6">
         <label id="label_contacto" className="col-m-3">Nombre</label>
