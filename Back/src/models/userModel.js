@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema(
             lowercase: true
         },
         phoneNumber: String,
+        gender:String,
         dni: Number,
         address: {
             street: {
@@ -63,8 +64,12 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.statics.encryptPassword = async (password) => {
+    try{
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
+    }catch(err){
+        console.log(err);
+    }
 };
 
 userSchema.statics.comparePassword = async (password, receivedPassword) => {
