@@ -15,12 +15,13 @@ class User {
     return user;
   };
 
-  async create({ firstName, lastName, dateOfBirth, dni, city, street, email, phoneNumber, password, username }) {
+  async create({ firstName, lastName, dateOfBirth,gender, dni, city, street, email, phoneNumber, password, username }) {
     const newUser = new userSchema({
       username,
       firstName,
       lastName,
       dateOfBirth,
+      gender,
       dni,
       email,
       adress: {
@@ -39,11 +40,9 @@ class User {
         expiresIn: "1h"
       })
     newUser.verToken = userToken;
-    const confirmationLink = `https://localhost:${process.env.PORT}/activar-cuenta/${userToken}`;
+    const confirmationLink = `http://localhost:${process.env.PORT}/activar-cuenta/${userToken}`;
     await transporter.sendMail(mailOptions(confirmationLink, newUser.email,"activation"));
     const res = await newUser.save();
-
-
     return res;
   };
 
