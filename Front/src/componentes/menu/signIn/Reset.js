@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Reset extends React.Component{
   constructor() {
@@ -49,7 +48,6 @@ if (typeof input["email"] !== "undefined") {
 } 
   
 this.setState({errors: errors});
-console.log(isValid);
 return isValid;
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, Button} from 'react-bootstrap';
 
 
@@ -10,22 +9,24 @@ function SignOut() {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleShow}>Logout</Button>
-      <Modal show={show} onHide={handleClose} className="modal-m">
+      <Button variant="primary" onClick={handleShow}>LogOut</Button>
+      <Modal show={show} onHide={handleClose} className="modal-s">
         <Modal.Header closeButton>
           <Modal.Title>Cerrar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <form action='http://localhost:5000/logout' method='get'>
         <div>Está seguro de que desea cerrar sesión?</div>
+        <Button variant="primary" type="submit" value="Submit">Confirmar</Button>
+        </form>
+
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Confirmar
-          </Button>
+      {/*   <Modal.Footer>
+
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
           </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   );

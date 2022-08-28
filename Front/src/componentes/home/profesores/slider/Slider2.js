@@ -16,38 +16,38 @@ return (
 <Carousel controls={true}>
   <Carousel.Item id="carousel-item2">
   <img className="center" src={profesor1} alt="Profesor1"/>
-   <Carousel.Caption>
+   {/* <Carousel.Caption>
         <h3>Profesor 1</h3>
         <p>Profesor especializado en clases de tenis. Ex número 24 ATP.</p>
-    </Carousel.Caption>
+    </Carousel.Caption> */}
   </Carousel.Item>
   <Carousel.Item id="carousel-item2">
   <img className="center" src={profesor2} alt="Profesor2"/>
-   <Carousel.Caption>
+{/*    <Carousel.Caption>
         <h3>Profesor 2</h3>
         <p>Profesor especializado en clases de tenis. Ex número 24 ATP.</p>
-    </Carousel.Caption>
+    </Carousel.Caption> */}
   </Carousel.Item>
   <Carousel.Item id="carousel-item2">
   <img className="center" src={profesor3} alt="Profesor3"/>
-   <Carousel.Caption>
+{/*    <Carousel.Caption>
         <h3>Profesor 3</h3>
         <p>Profesor especializado en clases de tenis. Ex número 24 ATP.</p>
-    </Carousel.Caption>
+    </Carousel.Caption> */}
   </Carousel.Item>
   <Carousel.Item id="carousel-item2">
   <img className="center" src={profesor4} alt="Profesor4"/>
-   <Carousel.Caption>
+{/*    <Carousel.Caption>
         <h3>Profesor 4</h3>
         <p>Profesor especializado en clases de tenis. Ex número 24 ATP.</p>
-    </Carousel.Caption>
+    </Carousel.Caption> */}
   </Carousel.Item>
   <Carousel.Item id="carousel-item2">
   <img className="center" src={profesor5} alt="Profesor5"/>
-   <Carousel.Caption>
+{/*    <Carousel.Caption>
         <h3>Profesor 5</h3>
         <p>Profesor especializado en clases de tenis. Ex número 24 ATP.</p>
-    </Carousel.Caption>
+    </Carousel.Caption> */}
   </Carousel.Item>
 </Carousel>
 </div>

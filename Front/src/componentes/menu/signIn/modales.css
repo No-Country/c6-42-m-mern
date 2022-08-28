@@ -75,14 +75,14 @@
   text-align:right;
 }
 
-.closeButton{
-  background-color: #f8f9fa;
+#closeButton{
+  background-color: white;
   color:grey;
-  border-color:  #f8f9fa;
+  border-color:  white;
 }
 
-.closeButton:hover{
-  background-color: #f8f9fa;
+#closeButton:hover{
+  background-color: white;
   color:grey;
   border-color:  #f8f9fa;
  }

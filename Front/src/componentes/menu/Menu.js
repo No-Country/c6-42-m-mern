@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import {Dropdown} from 'react-bootstrap';
 import SignIn from './signIn/SignIn.js';  
 

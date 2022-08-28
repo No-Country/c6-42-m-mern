@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Login extends React.Component{
 
@@ -63,7 +62,7 @@ handleSubmit(event) {
 
 render(){
     return(
-        <form onSubmit={this.handleSubmit} className="mb-3">
+        <form action='http://localhost:5000/login' onSubmit={this.handleSubmit} className="mb-3">
             <div class="form-group row mb-3">
               <label id="label_contacto" class="col-3">Usuario</label>
               <div className="col-9" >

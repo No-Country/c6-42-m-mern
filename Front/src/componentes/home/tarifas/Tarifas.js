@@ -2,7 +2,6 @@ import React from 'react';
 import balon from './balon.jpg';
 import tenis from './tenis.jpg';
 import paddle from './paddle.jpg';
-import Reservas from '../reservas/Reservas';
 
 class Tarifas extends React.Component {
  
@@ -23,8 +22,6 @@ class Tarifas extends React.Component {
                <p className="card-text"> Sábados, domingos y feriados <h5>$500</h5></p>
                <h3>Clases individuales</h3>
                <p className="card-text"> Lunes a viernes <h5>$600</h5></p>
-               <Reservas/>
-               <button className="btn btn-outline-dark btn-lg btn-block m-3">Reservar clase</button>
              </div>
            </div>
          </div>
@@ -39,8 +36,6 @@ class Tarifas extends React.Component {
                <p className="card-text"> Sábados, domingos y feriados <h5>$170</h5></p>
                <h3>Clases individuales</h3>
                <p className="card-text"> Lunes a viernes <h5>$300</h5></p>
-               <button className="btn btn-outline-dark btn-lg btn-block m-3">Reservar cancha</button>
-               <button className="btn btn-outline-dark btn-lg btn-block m-3">Reservar clase</button>
              </div>
            </div>
          </div>
@@ -55,8 +50,6 @@ class Tarifas extends React.Component {
                <p className="card-text"> Sábados, domingos y feriados <h5>$140</h5></p>
                <h3>Clases individuales</h3>
                <p className="card-text"> Lunes a viernes <h5>$260</h5></p>
-               <button className="btn btn-outline-dark btn-lg btn-block m-3">Reservar cancha</button>
-               <button className="btn btn-outline-dark btn-lg btn-block m-3">Reservar clase</button>
              </div>
            </div>
          </div>
