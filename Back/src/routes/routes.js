@@ -19,11 +19,13 @@ router.put('/new-password/:resetToken',createNewPass);
 router.get('/activar-cuenta/:verToken',confirmAccount);
 
 router.get('/profile',async (req, res, next) => {
-    res.send({data:req.user})}
+    console.log(Object.values(req.sessionStore.sessions)[0].split('"').at(-2));
+    res.send({data:Object.values(req.sessionStore.sessions)[0].split('"').at(-2)})}
 );
 
 router.get('/error', async (req, res, next) => {
-    res.send('algo salio mal :(');
+    console.log(Object.values(req.sessionStore.sessions)[0].split('"').at(-2))
+    res.send(Object.values(req.sessionStore.sessions)[0].split('"').at(-2));
 });
 
 router.put('/forgot-password',forgetPassword);
@@ -33,9 +35,15 @@ router.get('/jugadores/:id', isAuth, (req, res, next) => {
     res.send('succeeeessss!');
 });
 
-router.post('/login', passport.authenticate('login', { failureRedirect: 'error', successRedirect: 'jugadores' }));
+router.post('/login', passport.authenticate('login', { failureRedirect: 'error', successRedirect: 'profile' , failureMessage:true}));
 
-router.post('/register', passport.authenticate('register', { failureRedirect: 'error', successRedirect: 'activar' }));
+router.post('/register', passport.authenticate('register', { failureRedirect: 'error' }), async (req, res, next) => {
+    try {
+        res.redirect(process.env.FRONT_URI);
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy(err => {
