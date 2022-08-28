@@ -9,7 +9,7 @@ import Tarifas from './tarifas/Tarifas';
 //import Reservas from './reservas/Reservas'; 
 import Profesores from './profesores/Profesores'; 
 import Contacto from './contacto/Contacto'; 
-import Slider2 from './profesores/slider/Slider2.js'
+import Slider2 from './profesores/slider/Slider2.js';
 
 class Home extends React.Component {
 	render() {

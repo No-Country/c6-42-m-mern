@@ -2,11 +2,8 @@
     align-items: flex-end;
     justify-content: end;
     text-align: end;
-    padding:1%;
-<<<<<<< Updated upstream
-=======
+    padding:1%
 }
-
 #datepicker{
     border-style: none;
     background-color:blueviolet;
@@ -14,5 +11,4 @@
 
 .react-date-picker-wrapper input[type="date"]{
     border: none;
->>>>>>> Stashed changes
 }

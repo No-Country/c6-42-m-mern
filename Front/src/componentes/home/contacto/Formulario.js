@@ -1,5 +1,6 @@
 import React from 'react';
- 
+import './contacto.css';
+
 class Formulario extends React.Component {
 
 constructor() {
@@ -25,8 +26,9 @@ handleSubmit(event) {
     input["name"] = "";
     input["email"] = "";
     input["subject"] = "";
+    input["message"]="";
     this.setState({input:input});
-
+    
     alert('Mensaje enviado con éxito! Te contactaremos a la brevedad');
   }
 }
@@ -62,6 +64,11 @@ validate(){
     }
   }
 
+  if (!input["club"]) {
+    isValid = false;
+    errors["club"] = "Por favor, seleccione un club";
+  }
+
   if (!input["subject"]) {
     isValid = false;
     errors["subject"] = "Por favor, ingrese un asunto";
@@ -75,15 +82,16 @@ validate(){
   this.setState({
     errors: errors
   });
-  
+  console.log(isValid);
   return isValid;
+
 }
 
   render() {
     return ( 
     <form action='http://localhost:8080/contact' method='post' className="mb-2">
         <div class="form-group row mb-4">
-          <label for="name" class="col-sm-3 col-form-label text-right">Nombre y apellido</label>
+          <label id="label_contacto"for="name" class="col-sm-3 col-form-label text-right">Nombre y apellido</label>
           <div class="col-sm-6">
           <input 
           type="text" 
@@ -98,7 +106,7 @@ validate(){
         </div>
 
         <div class="form-group row mb-4">
-        <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+        <label id="label_contacto" for="email" class="col-sm-3 col-form-label text-right">Email</label>
         <div class="col-sm-6">
         <input 
         type="text" 
@@ -111,10 +119,28 @@ validate(){
         </div>
         <div className="text-danger">{this.state.errors.email}</div>
         </div>
-       
+
+        <div class="form-group row mb-4">
+        <label id="label_contacto" class="col-sm-3 col-form-label text-right">Club</label>
+        <div class="col-sm-6">
+        <select 
+        className="form-select" 
+        name="club"
+        value={this.state.input.club}
+        onChange={this.handleChange}>
+          <option selected disabled>Elegí un club</option>
+          <option>Pedro Bidegain</option>
+          <option>Almagro</option>
+          <option>25 de Mayo</option>
+          <option>Grün</option>
+          <option>La Terraza</option>
+        </select> 
+        </div>
+        <div className="text-danger">{this.state.errors.club}</div>
+        </div>
 
         <div class="row mb-4">
-        <label for="subject" class="col-sm-3 col-form-label text-right">Asunto</label>
+        <label id="label_contacto" for="subject" class="col-sm-3 col-form-label text-right">Asunto</label>
         <div class="col-sm-6">
         <input 
         type="text" 
@@ -129,7 +155,7 @@ validate(){
         </div>
        
         <div class="row mb-4">
-        <label for="message" class="col-sm-3 col-form-label text-right">Mensaje</label>
+        <label id="label_contacto" for="message" class="col-sm-3 col-form-label text-right">Mensaje</label>
         <div class="col-sm-6">
         <textarea 
         className="form-control" 
@@ -137,7 +163,7 @@ validate(){
         name="message"
         value={this.state.input.message}
         onChange={this.handleChange}
-        placeholder="Ingrese su mensaje"></textarea>
+        placeholder="Ingrese aquí su mensaje"></textarea>
         </div>
         <div className="text-danger">{this.state.errors.message}</div>
         </div>
