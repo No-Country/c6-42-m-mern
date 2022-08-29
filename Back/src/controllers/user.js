@@ -8,14 +8,15 @@ class User {
     this.collection = collection;
   }
 
-  async exist(usr) {
+  async findOne(usr) {
     const model = mongoose.model(this.collection);
     const user = await model.find({ username: usr });
     if (user.length === 0) return false;
-    return user;
+    return user; 
   };
 
   async create({ firstName, lastName, dateOfBirth,gender, dni, city, street, email, phoneNumber, password, username }) {
+    try{
     const newUser = new userSchema({
       username,
       firstName,
@@ -43,12 +44,18 @@ class User {
     const confirmationLink = `http://localhost:${process.env.PORT}/activar-cuenta/${userToken}`;
     await transporter.sendMail(mailOptions(confirmationLink, newUser.email,"activation"));
     const res = await newUser.save();
-    return res;
+    return res;}
+    catch(err){
+      console.log(err);
+    }
   };
 
-  find() { };
-
-  findAll() { };
+  async findAll() {
+    const model = mongoose.model(this.collection);
+    const user = await model.find();
+    if (user.length === 0) return false;
+    return user; 
+  };
 
   delete() { };
 
