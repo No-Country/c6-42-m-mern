@@ -12,7 +12,7 @@ class Reservation {
         const user = await model.find({ username: usr });
         if (user.length === 0) return false;
         return user;
-      };
+    };
 
     async create({ username, email, date, time, paymentMethod, sport, courtName, quantityOfPlayers, totalPrice }) {
         const newRes = new reservationSchema({
@@ -36,7 +36,7 @@ class Reservation {
         const reservations = await model.find({ username: userN });
         if (userN.length === 0) return false;
         return reservations;
-     };
+    };
 
     findAll() { };
 
