@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
             lowercase: true
         },
         phoneNumber: String,
-        gender:String,
+        gender: String,
         dni: Number,
         address: {
             street: {
@@ -50,24 +50,28 @@ const userSchema = new mongoose.Schema(
                 default: null
             },
         },
-        verToken:String,
-        resetToken:String,
-        confirmedAccount:{
-            type:Boolean,
-            default:false
+        verToken: String,
+        resetToken: String,
+        confirmedAccount: {
+            type: Boolean,
+            default: false
         },
         dateOfBirth: {
             type: Date,
             required: true,
+        },
+        reservations: {
+            type: Array,
+            default: []
         }
     }
 );
 
 userSchema.statics.encryptPassword = async (password) => {
-    try{
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
-    }catch(err){
+    try {
+        const salt = await bcrypt.genSalt(10);
+        return await bcrypt.hash(password, salt);
+    } catch (err) {
         console.log(err);
     }
 };
