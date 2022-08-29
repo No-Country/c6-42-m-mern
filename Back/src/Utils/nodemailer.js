@@ -19,6 +19,20 @@ const contactMailOptions = (values) => {
   }
 }
 
+const reservationMailOptions = ({ username, email, date, time, paymentMethod, sport, courtName, quantityOfPlayers, totalPrice }) => {
+  return {
+    from: "Sistema de reservas deportivas",
+    to: email,
+    bcc: process.env.NODEMAILER_USER,
+    subject: `Confirmation de reserva de ${username} el día ${date} a las ${time} en la cancha ${courtName} para jugar ${sport}`,
+    html: `<h3>${username}!<br>
+        Te esperamos en la cancha ${courtName} el día ${date} a las ${time} para jugar ${sport}.
+        <br>Metodo de pago: ${paymentMethod};
+        <br>Cantidad de jugadores: ${quantityOfPlayers}
+        <br>Precio total cancelado: ${totalPrice}`
+  }
+}
+
 const mailOptions = (confirmationLink, userEmail, option) => {
   from = "Sistema de reservas deportivas";
   if (option == "activation") {
@@ -41,4 +55,4 @@ const mailOptions = (confirmationLink, userEmail, option) => {
   }
 }
 
-module.exports = { transporter, mailOptions, contactMailOptions };
+module.exports = { transporter, mailOptions, contactMailOptions, reservationMailOptions };
