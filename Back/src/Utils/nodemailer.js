@@ -29,7 +29,7 @@ const reservationMailOptions = ({ username, email, date, time, paymentMethod, sp
         Te esperamos en la cancha ${courtName} el día ${date} a las ${time} para jugar ${sport}.
         <br>Metodo de pago: ${paymentMethod};
         <br>Cantidad de jugadores: ${quantityOfPlayers}
-        <br>Precio total cancelado: ${totalPrice}`
+        <br>Precio total cancelado: $${totalPrice}`
   }
 }
 
