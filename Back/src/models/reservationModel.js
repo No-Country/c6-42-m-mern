@@ -1,17 +1,11 @@
 const mongoose = require("mongoose");
 
-const reservationSchema = new Schema(
+const reservationSchema = new mongoose.Schema(
     {
         username: String,
-        email: {
-            type: String,
-            unique: true,
-        },
-        dateAndTime: {
-            type: String,
-            date: Date,
-            time: String
-        },
+        email: String,
+        date: String,
+        time: String,
         paymentMethod: String,
         sport: String,
         courtName: String,
