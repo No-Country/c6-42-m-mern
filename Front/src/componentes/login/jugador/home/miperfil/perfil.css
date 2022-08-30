@@ -1,0 +1,15 @@
+#tabla{
+    width: 50%;
+    margin:auto;
+    padding:auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#perfil{
+    padding: 1%;
+}
+
+#perfilPrincipal{
+    margin-top: 3%;
+}
