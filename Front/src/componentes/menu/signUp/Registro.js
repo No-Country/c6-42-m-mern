@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
+import instance from "../../../Utils/axiosInstance"
 
 export default function App() {
-  const { register, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
   const dateOfBirth = useRef({});
@@ -20,8 +21,21 @@ export default function App() {
     return edad;
   }
 
+  const onSubmit = async (data) => {
+    try {
+      const params = new URLSearchParams();
+      Object.entries(data).map(pair => {
+        return params.append(pair[0], pair[1]);
+      })
+      reset();
+      await instance.post("register", params);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <form action='http://localhost:5000/register' method='post' id="formulario">
+    <form onSubmit={handleSubmit(onSubmit)} id="formulario">
       <div class="form-group row mb-3">
         <div className="col-6">
           <label id="label_contacto" className="col-m-3">Nombre</label>
@@ -152,7 +166,6 @@ export default function App() {
             {errors?.email?.type === "required" && <p>Este campo es requerido</p>}
             {errors?.email?.type === "pattern" && (<p>Ingrese un email válido</p>)}</div>
         </div>
-
         <div className="col-6">
           <label id="label_contacto" className="col-m-3">Usuario</label>
           <div className="col-m-9">
@@ -202,6 +215,5 @@ export default function App() {
         <button type="submit" value="Submit" className="btn btn-success align-center">Enviar</button>
       </div>
     </form>
-
   );
 }

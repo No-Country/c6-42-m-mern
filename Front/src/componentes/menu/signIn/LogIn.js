@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { SessionContext } from '../../context/SessionContext';
 import axios from 'axios';
-import { SessionContext } from '../../context/sessionContext';
 import Cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ closeModal }) => {
-
   const [input, setInput] = useState({});
   const [errors, setErrors] = useState({});
-  const { userInfo, setUserInfo } = useContext(SessionContext);
-  const navigate = useNavigate();
+  const { setUserInfo } = useContext(SessionContext);
+  const Navigate = useNavigate()
 
   function handleChange(event) {
     let newInput = input;
@@ -19,39 +19,46 @@ const Login = ({ closeModal }) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    const { data } = await axios.post('http://localhost:8080/login', input, 
+    {
+      withCredentials: true
+    });
+    closeModal("login");
+    Cookie.set('fsuid', JSON.stringify(data));
+    setUserInfo(data);
+    Navigate('/');
+
     if (validate()) {
-      console.log(input, errors);
       let newInput = {};
-      newInput["username"] = "";
-      newInput["password"] = "";
+      input["username"] = "";
+      input["password"] = "";
       setInput({ ...newInput });
     }
 
-    const { data } = await axios.post('http://localhost:5000/login', input, { withCredentials: true });
-    Cookie.set('fsuid', JSON.stringify(data));
-    closeModal("login");
-    setUserInfo(data);
-    // navigate( `login/${data.username}`);
-    
-    // navigate(`login/${data.username}`);
   }
 
-
   function validate() {
-    let inputCheck = input;
+    let newInput = input;
     let newErrors = {};
     let isValid = true;
 
-    if (!inputCheck["username"]) {
+    if (!newInput["username"]) {
       isValid = false;
-      errors["username"] = "Por favor, ingrese su usuario.";
-      setErrors({ ...newErrors })
+      newErrors["username"] = "Por favor, ingrese su usuario.";
     }
 
-    if (!input["password"]) {
+    /*   if (typeof input['name"] !== "undefined"){
+        const sim = /^\S*$/;
+        if(input["name"].length < 3 || !sim.test(input["name"])){
+            isValid = false;
+            errors["name"] = "Please enter valid username.";
+        }
+      } */
+
+    if (!newInput["password"]) {
       isValid = false;
-      errors["password"] = "Por favor, ingrese su contraseña.";
-      setErrors({ ...newErrors })
+      newErrors["password"] = "Por favor, ingrese su contraseña.";
     }
 
     setErrors({ ...newErrors });
@@ -60,7 +67,7 @@ const Login = ({ closeModal }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mb-3">
+    <form className="mb-3" onSubmit={handleSubmit} >
       <div class="form-group row mb-3">
         <label id="label_contacto" class="col-3">Usuario</label>
         <div className="col-9" >
@@ -89,8 +96,11 @@ const Login = ({ closeModal }) => {
       </div>
 
       <div className="text-center">
-        <button type="submit" value="Submit" className="btn btn-success" >Ingresar</button>
+        <button type="submit" value="Submit" className="btn btn-success">Ingresar</button>
       </div>
+
+      {/* <button type="submit" value="Submit"  className="btn btn-secondary">Cancelar</button> */}
+
     </form>
   )
 }

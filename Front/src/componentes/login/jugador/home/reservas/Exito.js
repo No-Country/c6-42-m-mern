@@ -4,7 +4,7 @@ import {faFaceLaugh} from '@fortawesome/free-regular-svg-icons';
 import SignOut from '../../menu/signOut/SignOut';
 
 
-const Exito = () => {
+function Exito() {  
   return (
     <body>
     <div class="p-3"><FontAwesomeIcon icon={faFaceLaugh} size='10x'/></div>

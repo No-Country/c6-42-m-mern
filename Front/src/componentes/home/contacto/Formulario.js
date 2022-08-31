@@ -1,177 +1,110 @@
 import React from 'react';
 import './contacto.css';
+import { useForm } from "react-hook-form";
+import instance from "../../../Utils/axiosInstance";
 
-class Formulario extends React.Component {
+export default function Contact() {
 
-constructor() {
-    super();
-    this.state = {
-      input: {},
-      errors: {}
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+const { register, handleSubmit, formState: { errors }, reset} = useForm();
+
+const onSubmit = async (data) => {
+  try {
+    const params = new URLSearchParams();
+    Object.entries(data).map(pair => {
+      return params.append(pair[0], pair[1]);
+    })
+    reset();
+    await instance.post("contact", params);
+  } catch (err) {
+    console.log(err);
+  }
 }
+
+return ( 
+    <form onSubmit={handleSubmit(onSubmit)}  className="mb-2">
     
-handleChange(event) {
-  let input = this.state.input;
-  input[event.target.name] = event.target.value;
-  this.setState({input});}
-   
-handleSubmit(event) {
-  event.preventDefault();
-  if(this.validate()){
-    console.log(this.state);
-    let input = {};
-    input["name"] = "";
-    input["email"] = "";
-    input["subject"] = "";
-    input["message"]="";
-    this.setState({input:input});
-    
-    alert('Mensaje enviado con éxito! Te contactaremos a la brevedad');
-  }
-}
+        <div class="form-group row mb-3">
+        <div className="col-6">
+        <label id="label_contacto"for="name" class="col-m-3 col-form-label text-right">Nombre y apellido</label>
+        <div className="col-m-9">
+        <input name="Name" className="form-control"
+              {...register("Name", {
+                required: true,
+              })} />
+        </div>
+        <div className="text-danger">
+          {errors?.Name?.type === "required" && <p>Este campo es requerido</p>}</div>
 
-validate(){
-  let input = this.state.input;
-  let errors = {};
-  let isValid = true;
+        </div>
+        </div>
 
-  if (!input["name"]) {
-    isValid = false;
-    errors["name"] = "Por favor, ingrese su nombre y apellido";
-  }
-
-/*   if (typeof input['name"] !== "undefined"){
-    const sim = /^\S*$/;
-    if(input["name"].length < 3 || !sim.test(input["name"])){
-        isValid = false;
-        errors["name"] = "Please enter valid username.";
-    }
-  } */
-
-  if (!input["email"]) {
-    isValid = false;
-    errors["email"] = "Por favor, ingrese su correo electrónico";
-  }
-
-  if (typeof input["email"] !== "undefined") {   
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    if (!pattern.test(input["email"])) {
-      isValid = false;
-      errors["email"] = "Por favor, ingrese un correo electrónico válido";
-    }
-  }
-
-  if (!input["club"]) {
-    isValid = false;
-    errors["club"] = "Por favor, seleccione un club";
-  }
-
-  if (!input["subject"]) {
-    isValid = false;
-    errors["subject"] = "Por favor, ingrese un asunto";
-  }
-
-  if (!input["message"]) {
-    isValid = false;
-    errors["message"] = "Por favor, ingrese su mensaje";
-  }
-
-  this.setState({
-    errors: errors
-  });
-  console.log(isValid);
-  return isValid;
-
-}
-
-  render() {
-    return ( 
-    <form onSubmit={this.handleSubmit} className="mb-2">
-        <div class="form-group row mb-4">
-          <label id="label_contacto"for="name" class="col-sm-3 col-form-label text-right">Nombre y apellido</label>
-          <div class="col-sm-6">
-          <input 
-          type="text" 
-          name="name"
-          class="form-control" 
-          id="name" 
-          value={this.state.input.name}
-          onChange={this.handleChange}
-          placeholder="Ingrese su nombre y apellido"/>
+        <div class="form-group row mb-3">
+        <div className="col-6">
+          <label id="label_contacto" className="col-m-3">Email</label>
+          <div className="col-m-9">
+            <input
+              className="form-control"
+              name="email"
+              type="email"
+              {...register("email", {
+                required: true,
+                pattern: new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i),
+              })} />
           </div>
-        <div className="text-danger">{this.state.errors.name}</div>
+          <div className="text-danger">
+            {errors?.email?.type === "required" && <p>Este campo es requerido</p>}
+            {errors?.email?.type === "pattern" && (<p>Ingrese un email válido</p>)}</div>
+        </div>
         </div>
 
-        <div class="form-group row mb-4">
-        <label id="label_contacto" for="email" class="col-sm-3 col-form-label text-right">Email</label>
-        <div class="col-sm-6">
-        <input 
-        type="text" 
-        name="email" 
-        value={this.state.input.email}
-        onChange={this.handleChange}
-        class="form-control" 
-        placeholder="Ingrese su email" 
-        id="email" />
+        <div class="form-group row mb-3">
+        <div className="col-6">
+          <label id="label_contacto" className="col-m-3">Club</label>
+          <div class="col-m-9">
+            <select className="form-select" name="gender" {...register("club", { required: "Seleccione una opción" })}>
+              <option value="" selected disabled>Seleccione un club</option>
+              <option value="bidegain">Pedro Bidegain</option>
+              <option value="almagro">Almagro</option>
+              <option value="25demayo">25 de Mayo</option>
+              <option value="grun">Grün</option>
+              <option value="terraza">La Terraza</option>
+            </select>
+          </div>
+          <div className="text-danger">{errors?.club?.type === "required" && <p>Seleccione una opción</p>}</div>
         </div>
-        <div className="text-danger">{this.state.errors.email}</div>
-        </div>
-
-        <div class="form-group row mb-4">
-        <label id="label_contacto" class="col-sm-3 col-form-label text-right">Club</label>
-        <div class="col-sm-6">
-        <select 
-        className="form-select" 
-        name="club"
-        value={this.state.input.club}
-        onChange={this.handleChange}>
-          <option selected disabled>Elegí un club</option>
-          <option>Pedro Bidegain</option>
-          <option>Almagro</option>
-          <option>25 de Mayo</option>
-          <option>Grün</option>
-          <option>La Terraza</option>
-        </select> 
-        </div>
-        <div className="text-danger">{this.state.errors.club}</div>
         </div>
 
-        <div class="row mb-4">
-        <label id="label_contacto" for="subject" class="col-sm-3 col-form-label text-right">Asunto</label>
-        <div class="col-sm-6">
-        <input 
-        type="text" 
-        name="subject" 
-        value={this.state.input.subject}
-        onChange={this.handleChange}
-        class="form-control" 
-        id="email" 
-        placeholder="Ingrese el asunto"/>
+        <div class="form-group row mb-3">
+        <div className="col-6">
+          <label id="label_contacto" className="col-m-3">Asunto</label>
+          <div className="col-m-9">
+          <input className="form-control" name="subject" type="text"
+           {...register("subject", {
+            required: true,
+          })} />
+          </div>
+          <div className="text-danger">
+            {errors?.subject?.type === "required" && <p>Este campo es requerido</p>}</div>
         </div>
-        <div className="text-danger">{this.state.errors.subject}</div>
         </div>
-       
-        <div class="row mb-4">
-        <label id="label_contacto" for="message" class="col-sm-3 col-form-label text-right">Mensaje</label>
-        <div class="col-sm-6">
-        <textarea 
-        className="form-control" 
-        id="message" 
-        name="message"
-        value={this.state.input.message}
-        onChange={this.handleChange}
-        placeholder="Ingrese aquí su mensaje"></textarea>
+
+        <div class="form-group row mb-3">
+        <div className="col-6">
+          <label id="label_contacto" className="col-m-3">Mensaje</label>
+          <div className="col-m-9">
+          <textarea className="form-control" name="message" type="text"
+               {...register("message", {
+                required: true,
+              })} />
+          </div>
+          <div className="text-danger">
+            {errors?.message?.type === "required" && <p>Este campo es requerido</p>}</div>
         </div>
-        <div className="text-danger">{this.state.errors.message}</div>
         </div>
 
         <button type="submit" value="Submit" className="btn btn-outline-dark btn-lg">Enviar</button>
     </form>
     ) 
   }
-}
+
  
-export default Formulario;

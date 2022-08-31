@@ -9,23 +9,50 @@ const transporter = createTransport({
   }
 });
 
-const contactMailOptions = ({ name, email, subject, message }) => {
+const contactMailOptions = (values) => {
+  let { name, club, email, subject, message } = values;
   return {
     from: `${name} -- ${email}`,
-    to: email,
-    subject,
+    to: process.env.NODEMAILER_USER,
+    subject: `Este mensaje es para el club ${club} : ${subject}`,
     text: message
   }
-};
+}
 
-const mailOptions = ({ email }) => {
+const reservationMailOptions = ({ username, email, date, time, paymentMethod, sport, courtName, quantityOfPlayers, totalPrice }) => {
   return {
-    from: 'Sitio de Reservas de Canchas Deportivas',
-    // Cambiar to: hacia quien vaya dirigido (el email del usuario)
+    from: "Sistema de reservas deportivas",
     to: email,
-    subject: 'Confirmacion de cuenta',
-    html: '<h3>Por favor acive su cuenta clickeando el siguiente enlace <a href="http://localhost:8080/activar-cuenta">ACTIVAR CUENTA</a></h3>'
+    bcc: process.env.NODEMAILER_USER,
+    subject: `Confirmation de reserva de ${username} el día ${date} a las ${time} en la cancha ${courtName} para jugar ${sport}`,
+    html: `<h3>${username}!<br>
+        Te esperamos en la cancha ${courtName} el día ${date} a las ${time} para jugar ${sport}.
+        <br>Metodo de pago: ${paymentMethod};
+        <br>Cantidad de jugadores: ${quantityOfPlayers}
+        <br>Precio total cancelado: $${totalPrice}`
   }
-};
+}
 
-module.exports = { transporter, mailOptions, contactMailOptions };
+const mailOptions = (confirmationLink, userEmail, option) => {
+  from = "Sistema de reservas deportivas";
+  if (option == "activation") {
+    return {
+      from,
+      to: userEmail,
+      cc: process.env.NODEMAILER_USER,
+      subject: 'Confirmacion de cuenta',
+      html: `<h3>Por favor active su cuenta clickeando el siguiente enlace <a href="${confirmationLink}">ACTIVAR CUENTA</a></h3>`
+    }
+  }
+  if (option === "renewpass") {
+    return {
+      from,
+      to: userEmail,
+      cc: process.env.NODEMAILER_USER,
+      subject: 'Reinicio de contraseña',
+      html: `<h3>Por favor actualice su contraseña clickeando el siguiente enlace <a href="${confirmationLink}">Actualizar contraseña</a></h3>`
+    }
+  }
+}
+
+module.exports = { transporter, mailOptions, contactMailOptions, reservationMailOptions };

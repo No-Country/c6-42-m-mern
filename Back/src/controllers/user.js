@@ -1,6 +1,8 @@
+require("dotenv").config({ path: "../../.env" })
 const mongoose = require("mongoose");
 const userSchema = require("../models/userModel");
-
+const jwt = require("jsonwebtoken");
+const { transporter, mailOptions } = require("../Utils/nodemailer");
 class User {
   constructor(collection) {
     this.collection = collection;
@@ -13,24 +15,39 @@ class User {
     return user; 
   };
 
-  async create({ firstName, lastName, gender, dateOfBirth, dni, city, street, email, phoneNumber, password, username }) {
+  async create({ firstName, lastName, dateOfBirth,gender, dni, city, street, email, phoneNumber, password, username }) {
+    try{
     const newUser = new userSchema({
       username,
       firstName,
       lastName,
       dateOfBirth,
-      dni,
       gender,
+      dni,
       email,
-      address: {
+      adress: {
         street,
         city
       },
       phoneNumber,
       password: await userSchema.encryptPassword(password)
     });
+    const userToken = jwt.sign({
+      id: newUser._id,
+      username: newUser.username,
+      email: newUser.email
+    }, process.env.JWT_SECRET,
+      {
+        expiresIn: "1h"
+      })
+    newUser.verToken = userToken;
+    const confirmationLink = `http://localhost:${process.env.PORT}/activar-cuenta/${userToken}`;
+    await transporter.sendMail(mailOptions(confirmationLink, newUser.email,"activation"));
     const res = await newUser.save();
-    return res;
+    return res;}
+    catch(err){
+      console.log(err);
+    }
   };
 
   async findAll() {
@@ -40,9 +57,9 @@ class User {
     return user; 
   };
 
-  delete() {};
+  delete() { };
 
-  update() {};
+  update() { };
 };
 
 module.exports = new User('users');
