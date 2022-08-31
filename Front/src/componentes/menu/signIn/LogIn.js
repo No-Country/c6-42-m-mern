@@ -1,105 +1,57 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { useForm } from "react-hook-form";
+import instance from "../../../Utils/axiosInstance"
 
-class Login extends React.Component{
+export default function Login() {
 
-  constructor() {
-    super();
-    this.state = {
-        input: {},
-        errors: {}
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const params = new URLSearchParams();
+      Object.entries(data).map(pair => {
+        return params.append(pair[0], pair[1]);
+      })
+      reset();
+      await instance.post("login", params);
+    } catch (err) {
+      console.log(err);
     }
-        
-handleChange(event) {
-    let input = this.state.input;
-    input[event.target.name] = event.target.value;
-    this.setState({input});}
-       
-handleSubmit(event) {
-    event.preventDefault();
-      if(this.validate()){
-        console.log(this.state);
-        let input = {};
-        input["username"] = "";
-        input["password"] = "";
-        this.setState({input:input});
-    
-        alert('');
-      }
-    }
-    
-    validate(){
-      let input = this.state.input;
-      let errors = {};
-      let isValid = true;
-    
-      if (!input["username"]) {
-        isValid = false;
-        errors["username"] = "Por favor, ingrese su usuario.";
-      }
-    
-    /*   if (typeof input['name"] !== "undefined"){
-        const sim = /^\S*$/;
-        if(input["name"].length < 3 || !sim.test(input["name"])){
-            isValid = false;
-            errors["name"] = "Please enter valid username.";
-        }
-      } */
+  }
 
-      if (!input["password"]) {
-        isValid = false;
-        errors["password"] = "Por favor, ingrese su contraseña.";
-      }
-
-      this.setState({
-        errors: errors
-      });
-      
-      return isValid;
-    }
-
-render(){
+  
     return(
-        <form  action='http://localhost:8080/login' method="post" className="mb-3">
+        <form onSubmit={handleSubmit(onSubmit)} className="mb-3">
             <div class="form-group row mb-3">
               <label id="label_contacto" class="col-3">Usuario</label>
               <div className="col-9" >
-              <input
-                type="text"
-                name="username"
-                value={this.state.input.username}
-                onChange={this.handleChange}
-                className="form-control"
-                placeholder="Ingrese su usuario"/>
-              </div>
-            <div className="text-danger">{this.state.errors.username}</div>    
-            </div>
+              <input name="username" className="form-control"
+              {...register("username", {
+                required: true,
+              })} />
+          </div>
+          <div className="text-danger">
+          {errors?.username?.type === "required" && <p>Este campo es requerido</p>}</div>
+          </div>
             <div class="form-group row mb-3">
               <label id="label_contacto" class="col-3">Contraseña</label>
               <div className="col-9" >
-              <input
-                type="password"
-                name="password"
-                value={this.state.input.password}
-                onChange={this.handleChange}
-                className="form-control" 
-                placeholder="Ingrese su contraseña"/>
-            </div>
-            <div className="text-danger">{this.state.errors.password}</div>    
-            </div>
+              <input 
+              type="password"
+              name="password" 
+              className="form-control" {...register("password", {
+              required: true,
+              })} />
+          </div>
+          <div className="text-danger">
+            {errors?.password?.type === "required" && <p>Este campo es requerido</p>}</div>
+          </div>
 
         <div className="text-center">
         <button type="submit" value="Submit"  className="btn btn-success">Ingresar</button>
         </div>
-        
-        {/* <button type="submit" value="Submit"  className="btn btn-secondary">Cancelar</button> */}
-        
         </form>
     )
 }
-}
-
-export default Login;
