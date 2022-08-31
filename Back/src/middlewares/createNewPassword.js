@@ -24,6 +24,8 @@ const createNewPass = async (req, res) => {
     user.password = encryptedPass;
 
     await user.save();
+    
+    return res.status(200).json("password Saved");
 
   } catch (err) {
     console.log(err);

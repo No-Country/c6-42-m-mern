@@ -1,16 +1,16 @@
 const jwt = require("jsonwebtoken");
 const userSchema = require("../models/userModel");
-const { transporter, passwordMailOptions } = require("../Utils/nodemailer");
+const { transporter, mailOptions } = require("../Utils/nodemailer");
 
 const forgetPassword = async (req, res) => {
   try {
-    let { email } = req.params;
+    let { email } = req.query;
 
     if (!email) return res.status(404).json({ message: "Se necesita una dirección de correo electrónico" })
 
     const user = await userSchema.findOne({ email });
 
-    if (!user) return res.status(403)
+    if (!user) return res.status(403).json({message:"El usuario no se encuentra registrado"});
 
     const token = jwt.sign({
       id: user._id,
@@ -27,7 +27,7 @@ const forgetPassword = async (req, res) => {
 
     await user.save();
 
-    await transporter.sendMail(passwordMailOptions(confirmationLink, user.email, "renewpass"));
+    await transporter.sendMail(mailOptions(confirmationLink, user.email, "renewpass"));
 
     return res.status(200).json({ message: "Email sent" })
 

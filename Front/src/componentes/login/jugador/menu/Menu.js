@@ -4,8 +4,8 @@ import {Dropdown} from 'react-bootstrap';
 import SignOut from './signOut/SignOut.js';
 
 
-class Menu extends React.Component {
-    render (){
+const Menu = () => {
+  console.log('Menu');
       return(
       <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -30,6 +30,5 @@ class Menu extends React.Component {
   </nav>
   )
   }
-}
 
 export default Menu;

@@ -1,23 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import "bootstrap/dist/js/bootstrap.min.js"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './componentes/home/Home';
-import Home2 from './componentes/login/jugador/home/Home2';
+import SessionContextProvider from './componentes/context/sessionContext';
+import App from './App';
 
-export default function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/login/jugador" element={<Home2/>}></Route>
-      </Routes>
-    </BrowserRouter>
-    </div>
-  );
-}
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <SessionContextProvider>
+//     <App />
+//   </SessionContextProvider>
+// );
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+ReactDOM.render(
+  <SessionContextProvider>
+    <App />
+  </SessionContextProvider>,
+  document.getElementById('root')
+);
