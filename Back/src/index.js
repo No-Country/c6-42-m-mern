@@ -9,7 +9,6 @@ const hpp = require("hpp");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const router = require("./routes/routes");
-const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -17,8 +16,12 @@ const limiter = rateLimit({
     windowMs: 10 * 60 * 1000,    // 10 minutes
     max: 100                     // 100 requests per IP
 });
+require('./Utils/passport-strategies')(passport);
 app.use(limiter);
-app.use(cors('*'));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(hpp());

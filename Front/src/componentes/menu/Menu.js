@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Dropdown} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { SessionContext } from '../context/sessionContext.js';
 import SignIn from './signIn/SignIn.js';  
+import '../menu/signIn/modales.css';
 
 // import SignOut from './signOut/SignOut.js';
 
 
-class Menu extends React.Component {
-    render (){
+const Menu = () => {
+  const { userInfo } = useContext(SessionContext);
       return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -25,14 +28,13 @@ class Menu extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
         </li>
-        <div><li className="nav-link"><SignIn/></li></div>
+        <div><li className="nav-link">{ userInfo?.username ? <Link to={`/login/${userInfo.username}`}>{userInfo.username}</Link> : <SignIn/> }</li></div>
         {/* <li id="nav-item"><SignOut/></li>  */}
         </ul> 
         </div>
       </div>
   </nav>
   )
-  }
 }
 
 export default Menu;

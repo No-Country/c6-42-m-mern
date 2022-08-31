@@ -12,7 +12,7 @@ class Jumbotron extends React.Component {
                 <p>
                     Somos una empresa joven que desarrolla aplicaciones web para simplificar y mejorar las tareas cotidianas.
                     <br/>
-                    Comenzamos nuestros primeros proyectos en 2019. 
+                    Comenzamos nuestros primeros proyectos en 2019.
                 </p>
                 
             </div>
