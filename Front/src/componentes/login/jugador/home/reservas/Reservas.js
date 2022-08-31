@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, Button} from 'react-bootstrap';
 import FormReservas from './Formulario';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import esLocale from 'date-fns/locale/es';
 
 function Reservas() {
   const [show, setShow] = useState(false);
@@ -19,9 +16,7 @@ function Reservas() {
           <Modal.Title>Reserva de cancha</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
         <FormReservas/>
-        </MuiPickersUtilsProvider> 
         </Modal.Body>
       </Modal>
     </>

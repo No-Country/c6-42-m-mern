@@ -4,19 +4,20 @@ const userController = require("../controllers/user");
 const userModel = require("../models/userModel");
 
 passport.use('login', new passportStrategy(async (username, password, done) => {
-  let user = await userController.exist(username);
+  let user = await userController.findOne(username);
   let newMsg = "El usuario o la contraseña son incorrectos";
+  console.log(user);
   if (!user) return done(null, false,{message:newMsg});
   const comparedPw = await userModel.comparePassword(password, user[0].password);
   if (!comparedPw) return done(null, false,{message:newMsg});
-  if (!user.confirmedAccount) return done(null,false,{message:"La cuenta aún no ha sido confirmada"});
+  if (!user[0].confirmedAccount) return done(null,false,{message:"La cuenta aún no ha sido confirmada"});
   return done(null,user[0]);
 }));
 
 passport.use('register', new passportStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
-  let exist = await userController.exist(username);
+  let exist = await userController.findOne(username);
   if (exist) return done("Usuario existente");
   let user = await userController.create(req.body);
   return done(null, user);
