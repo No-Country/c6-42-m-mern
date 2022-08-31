@@ -21,7 +21,7 @@ const forgetPassword = async (req, res) => {
 
         user.resetToken = token;
 
-        const changePwLink = `http://localhost:${process.env.FRONT_URI}/new-password/${token}`
+        const changePwLink = `${process.env.FRONT_URI}/new-password/${token}`
 
         await user.save();
 
