@@ -1,6 +1,6 @@
  
 import React from 'react';
-import Formulario from './Formulario'; 
+import Contact from './Formulario'; 
  
 class Contacto extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Contacto extends React.Component {
             </section>
         </div>
 
-        <Formulario/>
+        <Contact/>
         
         </>
     )

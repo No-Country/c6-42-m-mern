@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 import 'bootswatch/dist/minty/bootstrap.min.css'; 
 import './reservas.css';
-import { createTheme } from "@material-ui/core";
-import { DatePicker }  from '@material-ui/pickers';
-import { ThemeProvider } from "@material-ui/styles";
-import { grey } from "@material-ui/core/colors";
-
 
 function FormReservas(){
 
 const[dateSelected, changeDateSelected]= useState(new Date());
 
-const defaultMaterialTheme = createTheme({
-    palette: {
-      primary: grey,
-    },
-  });
-
 return(
+<div>
 <form action='' method="post">
-<div class="form-group row p-2">
+
 <label id="label_contacto" className="col-sm-2">Deporte</label>
 <div className="col-sm-4">
 <select className="form-select" name="deporte">
@@ -29,6 +19,7 @@ return(
     <option>Tenis</option>
 </select> 
 </div>
+
 <label id="label_contacto" className="col-sm-2">Club</label>
 <div className="col-sm-4">
 <select className="form-select" name="club">
@@ -40,23 +31,20 @@ return(
     <option>La Terraza</option>
 </select> 
 </div>
-</div>
 
 <div class="form-group row p-2">
 <label id="label_contacto" className="col-sm-2">Fecha</label>
-<div className="col-sm-4">
-<ThemeProvider theme={defaultMaterialTheme}>
-<DatePicker
+<input
+type="date"
 id='datepicker'
 className="form-select"
 name="date"
 value={dateSelected} 
 onChange={changeDateSelected}
-minDate={new Date()}
 maxDate={'01/01/2023'}
 format="dd/MM/yyyy"/>
-</ThemeProvider>
 </div>
+
 <label id="label_contacto" className="col-sm-2">Hora</label>
 <div className="col-sm-4">
 <select className="form-select" name="hour">
@@ -76,11 +64,13 @@ format="dd/MM/yyyy"/>
     <option>21:00</option>
 </select> 
 </div>
-</div>
+
 <div id="boton">
 <button type="submit" value="Submit" className="btn btn-primary">Confirmar</button>
 </div>
+
 </form>
+</div>
 )
 }
 

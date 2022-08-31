@@ -21,7 +21,6 @@ class Menu extends React.Component {
             <Dropdown.Item href="#Clubes">Clubes</Dropdown.Item>
             <Dropdown.Item href="#Profesores">Profesores</Dropdown.Item>  
             <Dropdown.Item href="#Tarifas">Tarifas</Dropdown.Item>
-            <Dropdown.Item href="#Reservas">Reservas</Dropdown.Item>
             <Dropdown.Item href="#Contacto">Contacto</Dropdown.Item>  
             </Dropdown.Menu>
           </Dropdown>

@@ -75,4 +75,3 @@ class Reset extends React.Component {
 }
 
 export default Reset;
-

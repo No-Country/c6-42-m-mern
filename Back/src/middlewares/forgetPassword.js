@@ -5,6 +5,7 @@ const { transporter, mailOptions } = require("../Utils/nodemailer");
 const forgetPassword = async (req, res) => {
     try {
         let { email } = req.body.data;
+        console.log(email)
         if (!email) return res.status(404).json({ message: "Se necesita una dirección de correo electrónico" })
         const user = await userSchema.findOne({ email });
 
@@ -21,7 +22,9 @@ const forgetPassword = async (req, res) => {
 
         user.resetToken = token;
 
-        const changePwLink = `${process.env.FRONT_URI}/new-password/${token}`
+        console.log(token);
+
+        const changePwLink = `${process.env.FRONT_URI}/reset/${token}`
 
         await user.save();
 

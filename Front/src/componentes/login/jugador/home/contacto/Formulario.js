@@ -16,7 +16,8 @@ constructor() {
 handleChange(event) {
   let input = this.state.input;
   input[event.target.name] = event.target.value;
-  this.setState({input});}
+  this.setState({input});
+}
    
 handleSubmit(event) {
   event.preventDefault();
@@ -28,7 +29,6 @@ handleSubmit(event) {
     input["subject"] = "";
     input["message"]="";
     this.setState({input:input});
-    
     alert('Mensaje enviado con éxito! Te contactaremos a la brevedad');
   }
 }
@@ -79,10 +79,10 @@ validate(){
     errors["message"] = "Por favor, ingrese su mensaje";
   }
 
-  this.setState({
-    errors: errors
-  });
-  console.log(isValid);
+  this.setState({errors: errors});
+  
+  console.log(isValid)
+
   return isValid;
 
 }

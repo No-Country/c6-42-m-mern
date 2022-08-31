@@ -1,6 +1,7 @@
-import React, { useParams, useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './modales.css';
+import {useParams} from "react-router-dom";
 
 function Reset2() {
   const [input, setInput] = useState({});
