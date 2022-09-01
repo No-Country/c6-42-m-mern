@@ -89,8 +89,9 @@ router.post('/reservation', processReservation);
 router.post('/contact', async (req, res, next) => {
     try {
         if (req.body) {
-            
+            const newCourtMsg = new courtMsgSchema(req.body);
             await transporter.sendMail(contactMailOptions(req.body));
+            await newCourtMsg.save();
             res.status(200).send("Su info ha sido enviada");
         }
         else{
