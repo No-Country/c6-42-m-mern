@@ -14,7 +14,7 @@ class User {
     if (user.length === 0) return false;
     return user; 
   };
-
+  
   async create({ firstName, lastName, dateOfBirth,gender, dni, city, street, email, phoneNumber, password, username }) {
     try{
     const newUser = new userSchema({

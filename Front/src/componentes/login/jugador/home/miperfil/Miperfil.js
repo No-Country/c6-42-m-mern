@@ -1,6 +1,5 @@
 import React from 'react';
 import './perfil.css';
-import {Button} from 'react-bootstrap';
 
 class Perfil extends React.Component {
  
@@ -31,8 +30,6 @@ class Perfil extends React.Component {
 </table>
 </div>
 
-<div id="perfil"><Button>Editar datos</Button></div>
-
 <div id="perfil"><h2>Mis reservas</h2></div>
 <div id="perfil"><h3>Canchas</h3></div>
 <div id="perfil" >
@@ -61,7 +58,6 @@ class Perfil extends React.Component {
   </tbody>
 </table>
 </div>
-<div id="perfil"><h3>Clases</h3></div>
 </div>
 </>
     )

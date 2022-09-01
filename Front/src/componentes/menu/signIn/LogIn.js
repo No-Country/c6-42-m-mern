@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import instance from "../../../Utils/axiosInstance"
 
-export default function Login() {
+export default function Login({closeModal}) {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -15,8 +15,10 @@ export default function Login() {
         return params.append(pair[0], pair[1]);
       })
       reset();
+      closeModal();
       await instance.post("login", params);
     } catch (err) {
+      alert(err);
       console.log(err);
     }
   }

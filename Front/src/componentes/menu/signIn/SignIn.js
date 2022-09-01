@@ -65,7 +65,7 @@ render() {
         <Button id="closeButton" onClick={this.closeModal("login")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body"> 
-          <Login/>
+          <Login closeModal={this.closeModal("login")}/>
           <div><a href="#Reset" className="a-link p-1" onClick={this.openModal("reset")}>Olvidaste tu contraseña? Hacé click acá</a></div>
           <div><a href="#Registro" className="a-link p-1" onClick={this.openModal("signup")}>Aun no tiene usuario? Registrese acá</a> </div>
           </ModalBody>
@@ -83,7 +83,7 @@ render() {
         <Button id="closeButton" onClick={this.closeModal("signup")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body">
-          <Registro/>
+          <Registro closeModal={this.closeModal("signup")}/>
           <div><a href="#Login" id="a-link" className="a-link" onClick={this.openModal("login")}>Ya estás registrado? Hacé click acá para ingresar</a></div>
           </ModalBody >
           <ModalFooter className="modal-footer">
@@ -100,7 +100,7 @@ render() {
         <Button id="closeButton" onClick={this.closeModal("reset")}>X</Button>
         </ModalHeader>
           <ModalBody className="modal-body p-2">
-          <Reset/>
+          <Reset closeModal={this.closeModal("reset")}/>
           </ModalBody >
           <ModalFooter className="modal-footer">
           <Button className="btn btn-secondary" onClick={this.closeModal("reset")}>Cerrar</Button>

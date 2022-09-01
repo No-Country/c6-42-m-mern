@@ -15,10 +15,11 @@ const onSubmit = async (data) => {
     })
     reset();
     await instance.post("contact", params);
+    alert("Mensaje enviado con éxito")
   } catch (err) {
     console.log(err);
   }
-}
+} 
 
 return ( 
     <form onSubmit={handleSubmit(onSubmit)}  className="mb-2">
@@ -30,7 +31,7 @@ return (
         <input name="Name" className="form-control"
               {...register("Name", {
                 required: true,
-              })} />
+              })} autoFocus/>
         </div>
         <div className="text-danger">
           {errors?.Name?.type === "required" && <p>Este campo es requerido</p>}</div>
@@ -49,7 +50,7 @@ return (
               {...register("email", {
                 required: true,
                 pattern: new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i),
-              })} />
+              })}  autoFocus />
           </div>
           <div className="text-danger">
             {errors?.email?.type === "required" && <p>Este campo es requerido</p>}
@@ -61,7 +62,7 @@ return (
         <div className="col-6">
           <label id="label_contacto" className="col-m-3">Club</label>
           <div class="col-m-9">
-            <select className="form-select" name="gender" {...register("club", { required: "Seleccione una opción" })}>
+            <select className="form-select" name="club" {...register("club", { required: "Seleccione una opción" })}  autoFocus>
               <option value="" selected disabled>Seleccione un club</option>
               <option value="bidegain">Pedro Bidegain</option>
               <option value="almagro">Almagro</option>
@@ -81,7 +82,7 @@ return (
           <input className="form-control" name="subject" type="text"
            {...register("subject", {
             required: true,
-          })} />
+          })}  autoFocus/>
           </div>
           <div className="text-danger">
             {errors?.subject?.type === "required" && <p>Este campo es requerido</p>}</div>
@@ -95,7 +96,7 @@ return (
           <textarea className="form-control" name="message" type="text"
                {...register("message", {
                 required: true,
-              })} />
+              })}  autoFocus/>
           </div>
           <div className="text-danger">
             {errors?.message?.type === "required" && <p>Este campo es requerido</p>}</div>

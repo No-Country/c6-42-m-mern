@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import instance from "../../../Utils/axiosInstance"
 
-export default function Registro() {
+export default function Registro({closeModal}) {
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
@@ -28,10 +28,12 @@ export default function Registro() {
         return params.append(pair[0], pair[1]);
       })
       reset();
+      closeModal();
       await instance.post("register", params);
       alert('Recibirá un email para verificar su cuenta');
     } catch (err) {
       console.log(err);
+      alert(err);
     }
   }
 
@@ -173,8 +175,8 @@ export default function Registro() {
             <input name="username" className="form-control" {...register("username", { required: true, maxLength: 20 })} />
           </div>
           <div className="text-danger">
-            {errors?.lastName?.type === "required" && <p>Este campo es requerido</p>}
-            {errors?.lastName?.type === "maxLength" && (<p>El usuario no puede tener más de 20 caracteres</p>)}
+            {errors?.username?.type === "required" && <p>Este campo es requerido</p>}
+            {errors?.username?.type === "maxLength" && (<p>El usuario no puede tener más de 20 caracteres</p>)}
           </div>
         </div>
       </div>
