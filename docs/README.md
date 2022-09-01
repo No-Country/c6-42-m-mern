@@ -1,7 +1,9 @@
-# Deportes Online
-### Sitio de reservas de canchas deportivas: futbol 5, padel y tenis
 
-####Tecnologías
+
+# Deportes Online
+## Sitio de reservas de canchas deportivas: futbol 5, padel y tenis
+
+### Tecnologías
 
 ****FrontEnd:****
 - HTML
@@ -14,7 +16,8 @@
 - Node.js
 - Express.js
 
-####Roles
-Julia Lopez (FrontEnd)
-Adrian Gonzalez (BackEnd)
-Javier Moron (BackEnd)
+### Roles
+- Julia Lopez (FrontEnd)
+- Adrian Gonzalez (BackEnd)
+- Javier Moron (BackEnd)
+
