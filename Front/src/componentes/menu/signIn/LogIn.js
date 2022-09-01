@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SessionContext } from '../../context/SessionContext';
+import { SessionContext } from '../../context/sessionContext';
 import axios from 'axios';
 import Cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,11 @@ const Login = ({ closeModal }) => {
     {
       withCredentials: true
     });
+    console.log(data);
     closeModal("login");
+    if(data === "error"){
+        return alert("Revisá que la cuenta haya sido confirmada o que los datos ingresados estén correctos");
+    }
     Cookie.set('fsuid', JSON.stringify(data));
     setUserInfo(data);
     Navigate('/');
