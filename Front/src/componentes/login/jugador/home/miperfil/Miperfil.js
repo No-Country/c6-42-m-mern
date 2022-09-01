@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './perfil.css';
 import { Button } from 'react-bootstrap';
+import { SessionContext } from '../../../../context/sessionContext';
+import instance from "../../../../../Utils/axiosInstance";
 
+
+
+const getReservationsInfo = async(reservationsIDs)=>{
+  const {data} = await instance.get("/reservation",{params:reservationsIDs});
+  console.log(data);
+  }
 const Perfil = () => {
+  const { userInfo } = useContext(SessionContext);
+  if (userInfo.reservations !== []){
+    getReservationsInfo(userInfo.reservations);
+  }
   return (
     <>
       <div id="perfilPrincipal" className="container-fluid">
@@ -15,15 +27,15 @@ const Perfil = () => {
             <tbody>
               <tr className="table-active">
                 <th scope="row">Nombre</th>
-                <td>Julia</td>
+                <td>{userInfo.name}</td>
               </tr>
               <tr>
                 <th scope="row">Apellido</th>
-                <td>Lopez</td>
+                <td>{userInfo.lastName}</td>
               </tr>
               <tr className="table-active">
                 <th scope="row">Dirección</th>
-                <td>Berutti 597</td>
+                <td>{userInfo.address}</td>
               </tr>
             </tbody>
           </table>
