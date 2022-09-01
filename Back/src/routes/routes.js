@@ -20,47 +20,83 @@ let isAuth = (req, res, next) => {
     res.redirect('error');
 }
 
-router.put('/new-password/:resetToken',createNewPass);
+router.put('/new-password/:resetToken', createNewPass);
 
 router.get('/activar-cuenta/:verToken', confirmAccount);
 
+router.get('/profile', async (req, res, next) => {
+    console.log(Object.values(req.sessionStore.sessions)[0].split('"').at(-2));
+    res.send({ data: Object.values(req.sessionStore.sessions)[0].split('"').at(-2) })
+}
+);
+
 router.get('/error', async (req, res, next) => {
-    console.log(Object.values(req.sessionStore.sessions)[0].split('"').at(-2))
-    res.send(Object.values(req.sessionStore.sessions)[0].split('"').at(-2));
+    // console.log(Object.values(req.sessionStore.sessions)[0].split('"').at(-2))
+    // res.send(Object.values(req.sessionStore.sessions)[0].split('"').at(-2));
+    res.send('Errorrr');
 });
 
 router.put('/forgot-password', forgetPassword);
 
+router.post('/login', passport.authenticate('login', { failureRedirect: 'error' }), async (req, res, next) => {
+    try {
+        const loginUser = await userController.findOne(req.body.username);
+        res.send({
+            username: loginUser[0].username,
+            name: loginUser[0].firstName,
+            lastname: loginUser[0].lastName,
+            dni: loginUser[0].dni,
+            email: loginUser[0].email,
+            address: loginUser[0].address.street
+        });
+    } catch (error) {
+        res.json(error.message);
+    }
+});
+
 router.post('/register', passport.authenticate('register', { failureRedirect: 'error' }), async (req, res, next) => {
     try {
-        await transporter.sendMail(mailOptions(req.body));
         res.redirect(process.env.FRONT_URI);
     } catch (err) {
         console.log(err);
     }
 });
 
-router.get('/logout', isAuth, (req, res, next) => {
+router.get('/logout', (req, res, next) => {
     req.session.destroy(err => {
         if (err) res.send(JSON.stringify(err));
-        console.log('Logout successful');
         res.clearCookie('connect.sid');
         res.sendStatus(200);
         res.end();
     });
 });
 
+// router.get('/activar', async (req, res, next) => {
+//     try {
+//         // const info = await transporter.sendMail(mailOptions);
+//         // console.log(info);
+//         res.redirect('http://localhost:3000');
+//     } catch (err) {
+//         console.log(err);
+//         res.send(err);
+//     }
+
+// });
+
+router.post('/reservation', processReservation);
+
 router.post('/contact', async (req, res, next) => {
     try {
-        await transporter.sendMail(contactMailOptions(req.body));
-        res.status(200).json({
-            response: "Su info ha sido enviada",
-            error: ''
-        })
+        if (req.body) {
+            await transporter.sendMail(contactMailOptions(req.body));
+            res.status(200).send("Su info ha sido enviada");
+        }
+        res.status(403).send("La información no pudo ser procesada, por favor intente nuevamente");
     } catch (err) {
         console.log(err);
     }
 });
+
 
 
 module.exports = router;

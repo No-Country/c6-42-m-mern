@@ -5,7 +5,6 @@ import SignOut from './signOut/SignOut.js';
 
 
 const Menu = () => {
-  console.log('Menu');
       return(
       <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -29,6 +28,6 @@ const Menu = () => {
       </div>
   </nav>
   )
-  }
+}
 
 export default Menu;

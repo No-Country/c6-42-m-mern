@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import {Dropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { SessionContext } from '../context/sessionContext.js';
+import { SessionContext } from '../context/SessionContext.js';
 import SignIn from './signIn/SignIn.js';  
-import '../menu/signIn/modales.css';
 
 // import SignOut from './signOut/SignOut.js';
 
@@ -28,7 +27,7 @@ const Menu = () => {
             </Dropdown.Menu>
           </Dropdown>
         </li>
-        <div><li className="nav-link">{ userInfo?.username ? <Link to={`/login/${userInfo.username}`}>{userInfo.username}</Link> : <SignIn/> }</li></div>
+        <div><li className="nav-link">{ userInfo?.username ? <Link to={`/${userInfo.username}`}>{userInfo.username}</Link> : <SignIn/>}</li></div>
         {/* <li id="nav-item"><SignOut/></li>  */}
         </ul> 
         </div>

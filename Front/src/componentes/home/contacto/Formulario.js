@@ -105,4 +105,5 @@ return (
         <button type="submit" value="Submit" className="btn btn-outline-dark btn-lg">Enviar</button>
     </form>
     ) 
+<<<<<<< HEAD
   }

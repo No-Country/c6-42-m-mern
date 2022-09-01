@@ -16,7 +16,7 @@ const contactMailOptions = ({ name, email, subject, message }) => {
     subject,
     text: message
   }
-};
+}
 
 const mailOptions = (confirmationLink, userEmail, option) => {
   from = "Sistema de reservas deportivas";

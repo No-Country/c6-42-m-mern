@@ -15,7 +15,8 @@ class User {
     return user; 
   };
 
-  async create({ firstName, lastName, gender, dateOfBirth, dni, city, street, email, phoneNumber, password, username }) {
+  async create({ firstName, lastName, dateOfBirth,gender, dni, city, street, email, phoneNumber, password, username }) {
+    try{
     const newUser = new userSchema({
       username,
       firstName,
@@ -23,9 +24,8 @@ class User {
       dateOfBirth,
       gender,
       dni,
-      gender,
       email,
-      address: {
+      adress: {
         street,
         city
       },
@@ -44,7 +44,10 @@ class User {
     const confirmationLink = `http://localhost:${process.env.PORT}/activar-cuenta/${userToken}`;
     await transporter.sendMail(mailOptions(confirmationLink, newUser.email,"activation"));
     const res = await newUser.save();
-    return res
+    return res;}
+    catch(err){
+      console.log(err);
+    }
   };
 
   async findAll() {

@@ -1,27 +1,30 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {Modal, Button} from 'react-bootstrap';
-import Cookie from 'js-cookie';
 import axios from 'axios';
-import { SessionContext } from '../../../../context/sessionContext';
+import Cookie from 'js-cookie';
+import React, { useContext, useState } from 'react';
+import {Modal, Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { SessionContext } from '../../../../context/SessionContext';
 
-function SignOut() {
-  const Navigate = useNavigate();
+
+const SignOut = () => {
   const [show, setShow] = useState(false);
   const { setUserInfo } = useContext(SessionContext);
-
+  const Navigate = useNavigate();
+  
+  const handleShow = () => setShow(true);
+  
   const handleClose = async () => {
-    await axios.get('http://localhost:5000/logout', { withCredentials: true })
+    await axios.get('http://localhost:8080/logout', {
+      withCredentials: true
+    })
       .then(res => {
         Cookie.remove('fsuid');
         setUserInfo(null);
-        setShow(false)
-        Navigate('/')
+        setShow(false);
+        Navigate('/');
       })
       .catch(err => console.log(err));
   };
-
-  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -31,14 +34,14 @@ function SignOut() {
           <Modal.Title>Cerrar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action='http://localhost:5000/logout' method='get'>
+        <form onSubmit={handleClose}>
         <div>Está seguro de que desea cerrar sesión?</div>
-          <Button variant="primary" onClick={handleClose}>
-            Confirmar
-          </Button>
-          </form>
+        <Button variant="primary" type="submit" value="Submit">Confirmar</Button>
+        </form>
+
         </Modal.Body>
-        {/* <Modal.Footer>
+      {/*   <Modal.Footer>
+
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
           </Button>
@@ -47,4 +50,5 @@ function SignOut() {
     </>
   );
 }
+
 export default SignOut;
