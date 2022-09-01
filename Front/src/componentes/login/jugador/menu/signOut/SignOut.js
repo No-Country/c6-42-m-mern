@@ -28,7 +28,7 @@ const SignOut = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>LogOut</Button>
+      <Button variant="secondary" onClick={handleShow}>LogOut</Button>
       <Modal show={show} onHide={handleClose} className="modal-s">
         <Modal.Header closeButton>
           <Modal.Title>Cerrar sesión</Modal.Title>
@@ -36,16 +36,11 @@ const SignOut = () => {
         <Modal.Body>
         <form onSubmit={handleClose}>
         <div>Está seguro de que desea cerrar sesión?</div>
+        <div id="logout">
         <Button variant="primary" type="submit" value="Submit">Confirmar</Button>
+        </div>
         </form>
-
         </Modal.Body>
-      {/*   <Modal.Footer>
-
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );

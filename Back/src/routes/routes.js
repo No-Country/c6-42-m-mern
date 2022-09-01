@@ -20,7 +20,7 @@ let isAuth = (req, res, next) => {
     res.redirect('error');
 }
 
-router.put('/new-password/:resetToken', createNewPass);
+router.post('/new-password/:resetToken', createNewPass);
 
 router.get('/activar-cuenta/:verToken', confirmAccount);
 

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import instance from "../../../Utils/axiosInstance"
 
-export default function App() {
+export default function Registro() {
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
@@ -29,6 +29,7 @@ export default function App() {
       })
       reset();
       await instance.post("register", params);
+      alert('Recibirá un email para verificar su cuenta');
     } catch (err) {
       console.log(err);
     }

@@ -4,9 +4,9 @@ const userController = require("../controllers/user");
 const userModel = require("../models/userModel");
 
 passport.use('login', new passportStrategy(async (username, password, done) => {
+  console.log(username,password)
   let user = await userController.findOne(username);
   let newMsg = "El usuario o la contraseña son incorrectos";
-  console.log(user);
   if (!user) return done(null, false,{message:newMsg});
   const comparedPw = await userModel.comparePassword(password, user[0].password);
   if (!comparedPw) return done(null, false,{message:newMsg});
