@@ -29,8 +29,20 @@ class Reservation {
         })
         const session = stripe.checkout.sessions.create({
             payment_method_types :["card"],
-
-        })
+            mode:"payment",
+            line_items:{
+                price_data:{
+                    currency:"ars",
+                    product_data:{
+                        name:"reserva"
+                    },
+                    unit_amount:40000,
+                },
+                quantity:1
+                }
+            ,success_url:process.env.FRONT_URI,
+            cancel_url:`http://localhost:${process.env.PORT}/error`
+            })
         await transporter.sendMail(reservationMailOptions(newRes));
         const res = await newRes.save();
         return res;
