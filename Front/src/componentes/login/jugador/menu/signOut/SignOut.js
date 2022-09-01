@@ -3,7 +3,7 @@ import Cookie from 'js-cookie';
 import React, { useContext, useState } from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { SessionContext } from '../../../../context/SessionContext';
+import { SessionContext } from '../../../../context/sessionContext';
 
 
 const SignOut = () => {

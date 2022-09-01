@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Dropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { SessionContext } from '../context/SessionContext.js';
+import { SessionContext } from '../context/sessionContext';
 import SignIn from './signIn/SignIn.js';  
 
 // import SignOut from './signOut/SignOut.js';

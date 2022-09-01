@@ -7,7 +7,7 @@ import NoPage from './componentes/NoPage';
 import Exito from './componentes/login/jugador/home/reservas/Exito'
 import NoExito from './componentes/login/jugador/home/reservas/NoExito'
 import Validation from './componentes/menu/signUp/Success';
-import { SessionContext } from './componentes/context/SessionContext';
+import { SessionContext } from './componentes/context/sessionContext';
 
 export default function App() {
   const { userInfo } = useContext(SessionContext);
