@@ -1,5 +1,23 @@
-## Sitio de reserva de canchas deportivas!
 
-Sitio web de reservas con acceso a diferentes canchas deportivas (fútbol, tenis, padel).
 
+# Deportes Online
+## Sitio de reservas de canchas deportivas: futbol 5, padel y tenis
+
+### Tecnologías
+
+****FrontEnd:****
+- HTML
+- CSS
+- Bootstrap
+- React.js
+
+****BackEnd:****
+- MongoDB
+- Node.js
+- Express.js
+
+### Roles
+- Julia Lopez (FrontEnd)
+- Adrian Gonzalez (BackEnd)
+- Javier Moron (BackEnd)
 
