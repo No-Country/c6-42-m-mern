@@ -17,7 +17,6 @@ const limiter = rateLimit({
     windowMs: 10 * 60 * 1000,    // 10 minutes
     max: 100                     // 100 requests per IP
 });
-require('./Utils/passport-strategies')(passport);
 app.use(limiter);
 app.use(cors({
     origin: 'http://localhost:3000',
