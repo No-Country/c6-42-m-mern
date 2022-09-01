@@ -28,7 +28,7 @@ return (
         <label id="label_contacto"for="name" class="col-m-3 col-form-label text-right">Nombre y apellido</label>
         <div className="col-m-9">
         <input name="Name" className="form-control"
-              {...register("Name", {
+              {...register("name", {
                 required: true,
               })} />
         </div>
@@ -104,6 +104,5 @@ return (
 
         <button type="submit" value="Submit" className="btn btn-outline-dark btn-lg">Enviar</button>
     </form>
-    ) 
-<<<<<<< HEAD
+    )
   }
