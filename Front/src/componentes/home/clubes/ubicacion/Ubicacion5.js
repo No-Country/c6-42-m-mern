@@ -12,7 +12,7 @@ function Ubicacion2() {
       <Button className="btn btn-outline-dark btn-m btn-block m-2" variant="primary" onClick={handleShow}>Ubicación</Button>
       <Modal show={show} onHide={handleClose} className="modal-m">
         <Modal.Header closeButton>
-          <Modal.Title>Club La Terraza</Modal.Title>
+          <Modal.Title>Club Grün</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="google-maps">
