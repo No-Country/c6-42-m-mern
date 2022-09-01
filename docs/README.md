@@ -1,9 +1,20 @@
-## Deportes Online
+# Deportes Online
+### Sitio de reservas de canchas deportivas: futbol 5, padel y tenis
 
-- Descripción: Sitio web de reservas con acceso a diferentes canchas deportivas (fútbol, tenis, padel).
+####Tecnologías
 
-- Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+****FrontEnd:****
+- HTML
+- CSS
+- Bootstrap
+- React.js
 
-_Tecnologías: CSS, Bootstrap, JWT, bcrypt, ...
+****BackEnd:****
+- MongoDB
+- Node.js
+- Express.js
 
-- Roles: Julia Lopez (FrontEnd), Javier Moron (BackEnd), Adrian Gonzalez (BackEnd).
+####Roles
+Julia Lopez (FrontEnd)
+Adrian Gonzalez (BackEnd)
+Javier Moron (BackEnd)
