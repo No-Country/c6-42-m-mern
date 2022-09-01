@@ -28,8 +28,6 @@ const userSchema = new mongoose.Schema(
                 type: String,
                 lowercase: true
             },
-            lat: Number,
-            lon: Number,
         },
         email: {
             type: String,
