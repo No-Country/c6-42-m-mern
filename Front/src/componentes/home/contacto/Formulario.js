@@ -1,7 +1,7 @@
 import React from 'react';
 import './contacto.css';
 import { useForm } from "react-hook-form";
-import instance from "../../../Utils/axiosInstance";
+import instance from "../../../Utils/axiosInstance"
 
 export default function Contact() {
 
@@ -26,15 +26,18 @@ return (
     
         <div class="form-group row mb-3">
         <div className="col-6">
-        <label id="label_contacto"for="name" class="col-m-3 col-form-label text-right">Nombre y apellido</label>
+        <label id="label_contacto" className="col-m-3">Nombre y apellido</label>
         <div className="col-m-9">
-        <input name="Name" className="form-control"
-              {...register("Name", {
-                required: true,
-              })} autoFocus/>
+        <input 
+        className="form-control"
+        name="name" 
+        type="text"
+        {...register("name", {
+          required: true,
+        })}/>
         </div>
         <div className="text-danger">
-          {errors?.Name?.type === "required" && <p>Este campo es requerido</p>}</div>
+          {errors?.name?.type === "required" && <p>Este campo es requerido</p>}</div>
 
         </div>
         </div>
@@ -50,7 +53,7 @@ return (
               {...register("email", {
                 required: true,
                 pattern: new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i),
-              })}  autoFocus />
+              })} />
           </div>
           <div className="text-danger">
             {errors?.email?.type === "required" && <p>Este campo es requerido</p>}
@@ -62,7 +65,7 @@ return (
         <div className="col-6">
           <label id="label_contacto" className="col-m-3">Club</label>
           <div class="col-m-9">
-            <select className="form-select" name="club" {...register("club", { required: "Seleccione una opción" })}  autoFocus>
+            <select className="form-select" name="club" {...register("club", { required: "Seleccione una opción" })}>
               <option value="" selected disabled>Seleccione un club</option>
               <option value="bidegain">Pedro Bidegain</option>
               <option value="almagro">Almagro</option>
@@ -82,7 +85,7 @@ return (
           <input className="form-control" name="subject" type="text"
            {...register("subject", {
             required: true,
-          })}  autoFocus/>
+          })}/>
           </div>
           <div className="text-danger">
             {errors?.subject?.type === "required" && <p>Este campo es requerido</p>}</div>
@@ -96,7 +99,7 @@ return (
           <textarea className="form-control" name="message" type="text"
                {...register("message", {
                 required: true,
-              })}  autoFocus/>
+              })}/>
           </div>
           <div className="text-danger">
             {errors?.message?.type === "required" && <p>Este campo es requerido</p>}</div>

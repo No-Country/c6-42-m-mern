@@ -1,22 +1,54 @@
 const reservationController = require("../controllers/reservation");
 const userController = require("../controllers/user");
 const mongoose = require("mongoose");
+const reservationPricesSchema = require("../models/PricesModel");
+const { transporter, reservationMailOptions } = require("../Utils/nodemailer");
 
-async function processReservation(req,res,next){
-    try{
-    let {username, email, date, time, paymentMethod, sport, courtName, quantityOfPlayers, totalPrice} = req.query;
-    let reservation = await reservationController.create({username, email, date, time, paymentMethod, sport, courtName, quantityOfPlayers, totalPrice});
+const formatPrice = (price) => `$${price / 100}`;
+
+async function processReservation(req, res, next) {
+  try {
+
+    let { username, date, time, paymentMethod, id } = req.body;
+
+    const pricingModel = reservationPricesSchema;
+
+    const resInfo = await pricingModel.find({ id });
+
+    let { court, sport, price } = resInfo[0];
+
+    // Format price before including into Database.
+    const formatedPrice = formatPrice(price);
+
+    let reservation = await reservationController.create({ username, date, time, paymentMethod, sport, court, totalPrice: formatedPrice });
+
     const user = await userController.findOne(username);
-    if(!user[0].reservations) user[0].reservations = [reservation._id];
-    if(user[0].reservations && !user[0].reservations.includes("630c0b2513a3c88b97041d6f")) user[0].reservations.push(reservation._id);
+
+    if (!user) return res.send({ message: "user not found" });
+
+    if (user[0].reservations.lenght === 0) user[0].reservations = [reservation._id];
+
+    if (!user[0].reservations.includes(reservation._id)) user[0].reservations.push(reservation._id);
+
+    transporter.sendMail(reservationMailOptions(username, user[0].email, date, time, sport, court, formatedPrice));
+
+    // Save user with new reservation added to array.
     await user[0].save();
-    await reservation.save();
-    res.status(200).json({data:reservation})
+
+    // Send to Stripe payment Gateway
+    if (reservation.paymentMethod === "Card") {
+      const session = await reservationController.pay(resInfo[0]);
+      res.send({ session: session.url });
     }
-    catch(err){
-        console.log(err);
+
+    else {
+      res.send({ url: "http://localhost:3000/success" });
     }
+  }
+  catch (err) {
+    console.log(err);
+  }
 
 }
 
-module.exports =  processReservation;
+module.exports = processReservation;
