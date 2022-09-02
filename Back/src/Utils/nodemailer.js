@@ -14,24 +14,25 @@ const contactMailOptions = ({ name, email, club, subject, message }) => {
     from: `${name} -- ${email}`,
     to: process.env.NODEMAILER_USER,
     subject,
-    html: `<h3>${name} envia el siguiente mensaje para el club: ${club}<h3><br> <h3>${message}<h3>`
+    html: `<h3>${name} envia el siguiente mensaje para el club ${club}:<h3><br> <h3>${message}<h3>`
   }
 }
 
-const reservationMailOptions = ({username, email,date,time,sport,courtName,quantityOfPlayers, totalPrice})=>{
-  return{
-    from:username,
-    to:email,
-    bbc:process.env.NODEMAILER_USER,
-    subject:`Confirmación de reserva de ${username} el día ${date} a las ${time}`,
-    text:`${username}! Este correo es para confirmar tu reserva el día ${date} a las ${time} en la cancha ${courtName}.
-    En total serían ${quantityOfPlayers} jugadores para jugar ${sport}.
-    `
+const reservationMailOptions = (username, email, date, time, sport, court, totalPrice) => {
+  return {
+    from: username,
+    to: email,
+    bbc: process.env.NODEMAILER_USER,
+    subject: `Confirmación de reserva de ${username} el día ${date} a las ${time}`,
+    text: `${username}! Este correo es para confirmar tu reserva el día ${date} a las ${time} en la cancha ${court}
+    para jugar ${sport}. Total abonado por la reserva ${totalPrice}`
   }
-}
+};
 
 const mailOptions = (confirmationLink, userEmail, option) => {
-  from = "Sistema de reservas deportivas";
+
+  const from = "Sistema de reservas deportivas";
+
   if (option == "activation") {
     return {
       from,
@@ -40,7 +41,7 @@ const mailOptions = (confirmationLink, userEmail, option) => {
       subject: 'Confirmacion de cuenta',
       html: `<h3>Por favor active su cuenta clickeando el siguiente enlace <a href="${confirmationLink}">ACTIVAR CUENTA</a></h3>`
     }
-  }
+  };
   if (option === "renewpass") {
     return {
       from,
@@ -49,7 +50,7 @@ const mailOptions = (confirmationLink, userEmail, option) => {
       subject: 'Reinicio de contraseña',
       html: `<h3>Por favor actualice su contraseña clickeando el siguiente enlace <a href="${confirmationLink}">Actualizar contraseña</a></h3>`
     }
-  }
-}
+  };
+};
 
 module.exports = { transporter, mailOptions, contactMailOptions, reservationMailOptions };
