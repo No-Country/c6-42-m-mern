@@ -11,7 +11,6 @@
   "type": "commonjs",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/pickers": "^3.3.10",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
