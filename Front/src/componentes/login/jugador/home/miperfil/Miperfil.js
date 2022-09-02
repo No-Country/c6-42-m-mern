@@ -6,14 +6,20 @@ import instance from "../../../../../Utils/axiosInstance";
 
 
 
-const getReservationsInfo = async(reservationsIDs)=>{
-  const {data} = await instance.get("/reservation",{params:reservationsIDs});
-  console.log(data);
-  }
+const getReservationsInfo = async (reservationsIDs) => {
+
+  const { data } = await instance.get("/reservation", { params: reservationsIDs });
+  //Pendiente hacer uso de reservaciones en front (data);
+  console.log(data)
+}
 const Perfil = () => {
+
   const { userInfo } = useContext(SessionContext);
-  if (userInfo.reservations !== []){
+
+  if (userInfo.reservations !== []) {
+
     getReservationsInfo(userInfo.reservations);
+
   }
   return (
     <>
