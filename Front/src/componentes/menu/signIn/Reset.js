@@ -14,7 +14,7 @@ class Reset extends React.Component {
   handleChange(event) {
     let input = this.state.input;
     input["email"] = event.target.value;
-    this.setState({input});
+    this.setState({ input });
   }
 
   handleSubmit(event) {
@@ -26,7 +26,7 @@ class Reset extends React.Component {
       this.setState({ input: input });
       this.closeModal("reset");
       alert('Recibirá un email para restablecer su contraseña.');
-      
+
     }
   }
 
@@ -47,7 +47,7 @@ class Reset extends React.Component {
       }
     }
 
-    this.setState({errors});
+    this.setState({ errors });
     return isValid;
   }
 

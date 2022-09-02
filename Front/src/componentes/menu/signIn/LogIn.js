@@ -20,14 +20,13 @@ const Login = ({ closeModal }) => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const { data } = await axios.post('http://localhost:8080/login', input, 
-    {
-      withCredentials: true
-    });
-    console.log(data);
+    const { data } = await axios.post('http://localhost:8080/login', input,
+      {
+        withCredentials: true
+      });
     closeModal("login");
-    if(data === "error"){
-        return alert("Revisá que la cuenta haya sido confirmada o que los datos ingresados estén correctos");
+    if (data === "error") {
+      return alert("Revisá que la cuenta haya sido confirmada o que los datos ingresados estén correctos");
     }
     Cookie.set('fsuid', JSON.stringify(data));
     setUserInfo(data);

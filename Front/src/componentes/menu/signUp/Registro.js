@@ -17,7 +17,6 @@ export default function Registro() {
     if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
       edad--;
     }
-    console.log(edad);
     return edad;
   }
 

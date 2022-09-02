@@ -17,14 +17,13 @@ function Reset2() {
       })
       reset();
       alert('Se restableció la contraseña');
-      await instance.post('/new-password/'+token,params);
+      await instance.post('/new-password/' + token, params);
     } catch (err) {
       console.log(err);
     }
   }
 
-  const {token} = useParams();
-  console.log(token)
+  const { token } = useParams();
 
   return (
     <body id="reset">
@@ -32,17 +31,17 @@ function Reset2() {
         <div id="reset2" class="form-group row p-3">
           <h1>Restablecer contraseña</h1>
           <div className="col-4" >
-          <label id="label_contacto" className="col-m-3">Contraseña</label>
-          <div className="col-m-9">
-            <input
-              id="password"
-              type="password"
-              name="password"
-              className="form-control" {...register("password", {
-                required: true
-              })} />
-          </div>
-          <div className="text-danger">{errors?.password?.type === "required" && <p>Este campo es requerido</p>}</div>
+            <label id="label_contacto" className="col-m-3">Contraseña</label>
+            <div className="col-m-9">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                className="form-control" {...register("password", {
+                  required: true
+                })} />
+            </div>
+            <div className="text-danger">{errors?.password?.type === "required" && <p>Este campo es requerido</p>}</div>
           </div>
           <div className="text-center p-3">
             <button type="submit" value="Submit" className="btn btn-success">Enviar</button>
