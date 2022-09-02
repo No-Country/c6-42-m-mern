@@ -8,9 +8,9 @@ const reservationSchema = new mongoose.Schema(
         time: String,
         paymentMethod: String,
         sport: String,
-        courtName: String,
+        court: String,
         quantityOfPlayers: Number,
-        totalPrice: Number,
+        totalPrice: String,
     },
     { timestamps: true }
 );

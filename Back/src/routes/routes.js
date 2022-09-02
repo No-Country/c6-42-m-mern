@@ -8,6 +8,7 @@ const userController = require("../controllers/user");
 const forgetPassword = require("../middlewares/forgetPassword");
 const createNewPass = require("../middlewares/createNewPass");
 const processReservation = require("../middlewares/processReservation");
+const reservationModel = require("../models/reservationModel");
 
 let isAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -48,7 +49,8 @@ router.post('/login', passport.authenticate('login', { failureRedirect: 'error' 
             lastname: loginUser[0].lastName,
             dni: loginUser[0].dni,
             email: loginUser[0].email,
-            address: loginUser[0].address.street
+            address: loginUser[0].address.street,
+            reservations: loginUser[0].reservations||null
         });
     } catch (error) {
         res.json(error.message);
@@ -84,7 +86,15 @@ router.get('/logout', (req, res, next) => {
 
 // });
 
-router.post('/reservation', processReservation);
+router.post('/reservation', isAuth, processReservation);
+router.post('/reservations', isAuth, async (req, res, next) => {
+    try {
+        const reserv = await reservationModel.find({ username: req.body.username })
+        res.send(reserv);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 router.post('/contact', async (req, res, next) => {
     try {

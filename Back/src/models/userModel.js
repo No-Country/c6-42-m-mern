@@ -26,9 +26,7 @@ const userSchema = new mongoose.Schema(
             city: {
                 type: String,
                 lowercase: true
-            },
-            lat: Number,
-            lon: Number,
+            }
         },
         email: {
             type: String,
@@ -62,6 +60,9 @@ const userSchema = new mongoose.Schema(
         
         gender: {
             type: String,
+        },
+        reservations: {
+            type: []
         }
     }
 );

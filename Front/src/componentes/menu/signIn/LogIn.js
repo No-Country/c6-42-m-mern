@@ -20,14 +20,17 @@ const Login = ({ closeModal }) => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const { data } = await axios.post('http://localhost:8080/login', input, 
+    await axios.post('http://localhost:8080/login', input, 
     {
       withCredentials: true
-    });
-    closeModal("login");
-    Cookie.set('fsuid', JSON.stringify(data));
-    setUserInfo(data);
-    Navigate('/');
+    })
+      .then(res => {
+        closeModal("login");
+        Cookie.set('fsuid', JSON.stringify(res.data));
+        setUserInfo(res.data);
+        Navigate('/');
+      })
+      .catch(err => console.log(err));
 
     if (validate()) {
       let newInput = {};
@@ -74,7 +77,7 @@ const Login = ({ closeModal }) => {
           <input
             type="text"
             name="username"
-            value={input?.username}
+            // value={input?.username}
             onChange={handleChange}
             className="form-control"
             placeholder="Ingrese su usuario" />
@@ -87,7 +90,7 @@ const Login = ({ closeModal }) => {
           <input
             type="password"
             name="password"
-            value={input?.password}
+            // value={input?.password}
             onChange={handleChange}
             className="form-control"
             placeholder="Ingrese su contraseña" />
