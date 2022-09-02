@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Modal, Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 function Ubicacion2() {
   const [show, setShow] = useState(false);
@@ -16,13 +16,13 @@ function Ubicacion2() {
         </Modal.Header>
         <Modal.Body>
           <div className="google-maps">
-          <iframe title="club4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d72186.83949164153!2d-58.46435754348016!3d-34.56709304408385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb423bd22b8cf%3A0x181e8dd7bb087890!2zR1LDnE4gRkM!5e0!3m2!1sit!2sit!4v1661179103184!5m2!1sit!2sit"></iframe>
+            <iframe title="club4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52566.139185617256!2d-58.61597821675497!3d-34.569156600000014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb9de34ac8e11%3A0x4ff92fa75d347349!2sLa%20Terraza%20Tenis!5e0!3m2!1sit!2sit!4v1661178891182!5m2!1sit!2sit"></iframe>
           </div>
-          
+
         </Modal.Body>
         <Modal.Footer>
-        <Button onClick={handleClose}>Cerrar</Button>
-        </Modal.Footer> 
+          <Button onClick={handleClose}>Cerrar</Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
