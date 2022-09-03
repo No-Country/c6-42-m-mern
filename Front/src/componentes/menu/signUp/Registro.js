@@ -29,7 +29,7 @@ export default function Registro({closeModal}) {
       })
       reset();
       closeModal();
-      await instance.post("register", params);
+      await instance.post("/register", params);
       alert('Recibirá un email para verificar su cuenta');
     } catch (err) {
       console.log(err);

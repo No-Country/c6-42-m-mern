@@ -15,7 +15,7 @@ function SignOut() {
           <Modal.Title>Cerrar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form action='http://localhost:8080/logout' method='get'>
+        <form action='https://c6-42-m-mern-back.vercel.app/logout' method='get'>
         <div>Está seguro de que desea cerrar sesión?</div>
         <div id="logout">
         <Button variant="primary" type="submit" value="Submit">Confirmar</Button>

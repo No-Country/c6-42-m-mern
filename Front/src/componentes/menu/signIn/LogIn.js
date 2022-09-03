@@ -20,7 +20,7 @@ const Login = ({ closeModal }) => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const { data } = await axios.post('http://localhost:8080/login', input,
+    const { data } = await axios.post('https://c6-42-m-mern-back.vercel.app/login', input,
       {
         withCredentials: true
       });
