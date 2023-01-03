@@ -4,7 +4,7 @@ async function logoutProcess(req, res){
         if (err) res.send(JSON.stringify(err));
         res.clearCookie('connect.sid');
         res.sendStatus(200);
-        res.end();
+        res.send("Usuario deslogueado");
     });
     }catch(err){
         console.log(err);
